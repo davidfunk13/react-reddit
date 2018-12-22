@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import Reddit from '../../utils/Reddit.js';
-
+let CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+let TYPE = process.env.REACT_APP_RESPONSE_TYPE;
+let URI = process.env.REACT_APP_REDIRECT_URI;
+let RANDOM_STRING = 'myanusisbleeding';
+let DURATION = process.env.REACT_APP_DURATION;
+let SCOPE_STRING = process.env.REACT_APP_SCOPE_STRING;
+console.log(CLIENT_ID, TYPE, URI, RANDOM_STRING, DURATION, SCOPE_STRING)
 export default class LoginForm extends Component {
     state = {
         loginUser: "",
@@ -16,12 +22,27 @@ export default class LoginForm extends Component {
     };
 
     handleFormSubmit = event => {
-        console.log('User: ' + this.state.loginUser, 'Pass: ' + this.state.loginPass);
-        event.preventDefault();
-        Reddit.login({User:this.state.loginUser, Pass: this.state.loginPass})
+        // let CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+        // let TYPE = process.env.REACT_APP_RESPONSE_TYPE;
+        // let URI = process.env.REACT_APP_REDIRECT_URI;
+        // let RANDOM_STRING = 'myanusisbleeding';
+        // let DURATION = process.env.REACT_APP_DURATION;
+        // let SCOPE_STRING = process.env.REACT_APP_SCOPE_STRING;
+        // // console.log('User: ' + this.state.loginUser, 'Pass: ' + this.state.loginPass);
+        // window.location.hash === `https://www.reddit.com/api/v1/authorize?
+        // client_id=${CLIENT_ID}
+        // &response_type=${TYPE}
+        // &state=${RANDOM_STRING}
+        // &redirect_uri=${URI}
+        // &duration=${DURATION}
+        // &scope=${SCOPE_STRING}`
+        // event.preventDefault();
+        // Reddit.login({ User: this.state.loginUser, Pass: this.state.loginPass })
     }
 
+
     render() {
+
         return (
             <div>
                 <form>
@@ -42,7 +63,8 @@ export default class LoginForm extends Component {
                         placeholder="Enter Password"
                     />
                     <div>
-                        <button onClick={this.handleFormSubmit}>Submit</button>
+                        <a href={`https://www.reddit.com/api/v1/authorize?api_key&client_id=${CLIENT_ID}&redirect_uri=http://localhost:3000&response_type=code&scope=identity&state=myanus&duration=permanent
+`}>asdasdasdasd</a>
                     </div>
                 </form>
             </div>
