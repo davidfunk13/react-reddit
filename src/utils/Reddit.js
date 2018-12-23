@@ -1,23 +1,17 @@
 import axios from "axios";
 import React from 'react';
 export const Reddit = {
-  login: (state, code) => {
-    console.log(state, code)
-// axios.post('https://www.reddit.com/api/v1/access_token', `grant_type=authorization_code&code=${code}&redirect_uri=http://localhost:3000`)
-// const axiosPost = axios({
-//   url: 'https://www.reddit.com/api/v1/access_token',
-//   method: 'post',
-//   headers: {
-
-//   },
-//   responseType: 'json',
-//   data: {
-//     grant_type: 'authorization_code',
-//     code: code,
-//     redirect_uri: 'http://localhost:3000' 
-//   }
-// });
-// return axiosPost.then(response=>{console.log(response)})
+  authorize: () => {
+    let url = window.location.href;
+    console.log(url)
+    if (url.includes('token')) {
+        let state = url.match(/state=(.*?)&/)[1];
+        let bearer = url.match(/token=(.*?)&/)[1]
+        if (state === process.env.REACT_APP_RANDOM_STRING && bearer !== undefined) {
+            console.log(state, bearer)
+            return bearer;
+        }
+    }
   }
 }
 
