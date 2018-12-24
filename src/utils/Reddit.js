@@ -12,14 +12,6 @@ export const Reddit = {
             return bearer;
         }
     }
-  },
-  testQuery: (token) => {
-
-    axios.get('https://oauth.reddit.com/api/v1/me', {headers:{Authorization: 'Bearer ' + token}}).then(response => {
- console.log(response)
-      return response
-    })
-
   }
 }
 
