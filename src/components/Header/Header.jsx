@@ -4,7 +4,9 @@ class Header extends Component {
     render() {
         return (
             <header>
-                <a href={authorize}>Login to reddit</a>
+                {this.props.token ? <p>Logged In</p> : <a href={authorize}>Login to reddit</a>
+                }
+                
             </header>
         )
     }

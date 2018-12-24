@@ -21,6 +21,7 @@ export default class Main extends Component {
         return (
             <div>
                     <Link to="/profile">Profile</Link>
+                    <Link to="/saved">Saved</Link>
             </div>
         );
     }
