@@ -1,32 +1,42 @@
 import React, { Component } from 'react';
-import './App.css';
+import './sass/App.scss';
 import Main from './components/Main/Main';
 import { Switch, Route } from 'react-router-dom';
-import Reddit from './utils/Reddit'
-import Header from './components/Header/Header';
+import Header from './components/Layout/Header/Header';
 import Saved from './components/Saved/Saved';
 import Profile from './components/Profile/Profile';
+import Reddit from './utils/Reddit';
 export default class App extends Component {
-  state = {
-    token: Reddit.authorize()
+  state = { token: null }
+  componentDidMount() {
+    if (Reddit.authorize() === null && sessionStorage.getItem('t') !== null){
+      let token = sessionStorage.getItem('t')
+      console.log(token)
+      this.setState({token: token})
+    } else {
+       this.setState({token:Reddit.authorize()}) 
+    }
+  }
+  logout(){
+    sessionStorage.removeItem('t');
+    Reddit.authorize()
+    this.setState({token: null});
   }
   render() {
     return (
       <div className="App">
-        <Header token={this.state.token} />
-        {this.state.token ?
-          <div>
-            <Switch>
-              <Route exact path="/" render={(props) => { return <Main token={this.state.token} {...props} /> }} />
-              <Route path="/profile" render={(props) => { return <Profile token={this.state.token} {...props} /> }} />
-              <Route path="/Saved" render={(props) => { return <Saved token={this.state.token} {...props} /> }} />
-            </Switch>
-          </div>
-          :
-          <div>
-            <p>No token</p>
-          </div>
-        }
+      <p>{this.state.token}</p>
+        <Header logout={()=>this.logout()} token={this.state.token} />
+        <div>
+          {this.state.token ? <Switch>
+            <Route exact path="/" render={(props) => { return <Main token={this.state.token} {...props} /> }} />
+            <Route path="/profile" render={(props) => { return <Profile token={this.state.token} {...props} /> }} />
+            <Route path="/Saved" render={(props) => { return <Saved token={this.state.token} {...props} /> }} />
+          </Switch> :
+            <div>Please Authorize Reddit</div>
+          }
+
+        </div>
       </div>
     );
   }
