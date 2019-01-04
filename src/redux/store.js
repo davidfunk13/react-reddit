@@ -1,9 +1,8 @@
-import {createStore, compose, applyMiddleware} from 'redux';
-import {persistStore, persistCombineReducers} from "redux-persist";
+import { createStore, compose, applyMiddleware } from 'redux';
 import rootReducer from './reducers/rootReducer';
-import {createLogger} from "redux-logger";
-import thunk from "redux-thunk";
-import storage from "redux-persist/es/storage";
+import { createLogger } from 'redux-logger';
+import thunk from 'redux-thunk';
+
 
 const loggerMiddleware = createLogger({
     collapsed: false,
@@ -12,25 +11,14 @@ const loggerMiddleware = createLogger({
 });
 
 const middleware = [
-    thunk,
-    loggerMiddleware
+    loggerMiddleware,
+    thunk
 ];
 
 const configureStore = compose(applyMiddleware(...middleware))(createStore);
 
-const rootPersistConfig = {
-    key: "root",
-    storage: storage
-};
-
-const combinedReducer = persistCombineReducers(rootPersistConfig, rootReducer);
-
 const createAppStore = () => {
-    let store = configureStore(combinedReducer);
-    let persistor = persistStore(store);
-    return{
-        persistor,
-        store
-    }
+    let store = configureStore(rootReducer);
+    return store
 };
 export default createAppStore;

@@ -6,17 +6,15 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import createAppStore from './redux/store';
-import { PersistGate } from 'redux-persist/es/integration/react';
 
-const { persistor, store } = createAppStore();
+
+const store = createAppStore();
 
 ReactDOM.render(
     <Provider store={store}>
-        <PersistGate persistor={persistor}>
-            < BrowserRouter >
-                <App />
-            </ BrowserRouter >
-        </PersistGate>
+        < BrowserRouter >
+            <App />
+        </ BrowserRouter >
     </Provider>
 
     , document.getElementById('root'));
