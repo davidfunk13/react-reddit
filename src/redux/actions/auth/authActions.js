@@ -30,3 +30,10 @@ export const tokenFailure = () => {
         data: null
     }
 }
+
+export const logout = () => {
+    return {
+        type: authActionTypes.LOGOUT,
+        data: sessionStorage.removeItem('t')
+    }
+}
