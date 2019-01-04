@@ -5,24 +5,26 @@ import { Switch, Route } from 'react-router-dom';
 import Header from './components/Layout/Header/Header';
 import Saved from './components/Saved/Saved';
 import Profile from './components/Profile/Profile';
-import Reddit from './utils/Reddit';
+// import Reddit from './utils/Reddit';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-export default class App extends Component {
+import * as authActionCreators from './redux/actions/auth/authActions';
+class App extends Component {
   state = { token: null }
   componentDidMount() {
-    if (Reddit.authorize() === null && sessionStorage.getItem('t') !== null) {
-      let token = sessionStorage.getItem('t')
-      console.log(token)
-      this.setState({ token: token })
-    } else {
-      this.setState({ token: Reddit.authorize() })
-    }
+    console.log(this.props)
+    // if (Reddit.authorize() === null && sessionStorage.getItem('t') !== null) {
+    //   let token = sessionStorage.getItem('t')
+    //   console.log(token)
+    //   this.setState({ token: token })
+    // } else {
+    //   this.setState({ token: Reddit.authorize() })
+    // }
   }
   logout() {
-    sessionStorage.removeItem('t');
-    Reddit.authorize()
-    this.setState({ token: null });
+  //   sessionStorage.removeItem('t');
+  //   Reddit.authorize()
+  //   this.setState({ token: null });
   }
   render() {
     return (
@@ -45,3 +47,15 @@ export default class App extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return state
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: {
+    auth: bindActionCreators(authActionCreators, dispatch)
+    }
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);

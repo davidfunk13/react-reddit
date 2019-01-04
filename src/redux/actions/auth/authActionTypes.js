@@ -1,0 +1,7 @@
+const actions = {
+AUTHORIZE_REDDIT: "AUTHORIZE_REDDIT",
+TOKEN_SUCCESS: "TOKEN_SUCCESS",
+TOKEN_FAILURE: "TOKEN_FAILURE",
+
+}
+export default actions;
