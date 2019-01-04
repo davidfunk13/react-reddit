@@ -13,6 +13,9 @@ export const Reddit = {
     } else {
       return null
     }
+  },
+  logout: () => {
+    sessionStorage.removeItem('t');
   }
 }
 

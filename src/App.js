@@ -9,24 +9,24 @@ import Reddit from './utils/Reddit';
 export default class App extends Component {
   state = { token: null }
   componentDidMount() {
-    if (Reddit.authorize() === null && sessionStorage.getItem('t') !== null){
+    if (Reddit.authorize() === null && sessionStorage.getItem('t') !== null) {
       let token = sessionStorage.getItem('t')
       console.log(token)
-      this.setState({token: token})
+      this.setState({ token: token })
     } else {
-       this.setState({token:Reddit.authorize()}) 
+      this.setState({ token: Reddit.authorize() })
     }
   }
-  logout(){
+  logout() {
     sessionStorage.removeItem('t');
     Reddit.authorize()
-    this.setState({token: null});
+    this.setState({ token: null });
   }
   render() {
     return (
       <div className="App">
-      <p>{this.state.token}</p>
-        <Header logout={()=>this.logout()} token={this.state.token} />
+        <p>{this.state.token}</p>
+        {this.state.token ? <button onClick={() => this.logout()}>Logout</button> : <div></div>}
         <div>
           {this.state.token ? <Switch>
             <Route exact path="/" render={(props) => { return <Main token={this.state.token} {...props} /> }} />

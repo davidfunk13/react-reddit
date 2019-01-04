@@ -4,7 +4,7 @@ class Header extends Component {
     render() {
         return (
             <header className='header'>
-            {this.props.token === null ? <a href={authorize}>Authorize Reddit!</a> : <button onClick={()=> this.props.logout}>Logouit</button>}
+            {this.props.token === null ? <a href={authorize}>Authorize Reddit!</a> : <div></div> }
             </header>
         )
     }
