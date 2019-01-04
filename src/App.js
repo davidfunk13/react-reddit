@@ -6,6 +6,8 @@ import Header from './components/Layout/Header/Header';
 import Saved from './components/Saved/Saved';
 import Profile from './components/Profile/Profile';
 import Reddit from './utils/Reddit';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 export default class App extends Component {
   state = { token: null }
   componentDidMount() {
@@ -27,6 +29,8 @@ export default class App extends Component {
       <div className="App">
         <p>{this.state.token}</p>
         {this.state.token ? <button onClick={() => this.logout()}>Logout</button> : <div></div>}
+
+        <Header token={this.state.token} />
         <div>
           {this.state.token ? <Switch>
             <Route exact path="/" render={(props) => { return <Main token={this.state.token} {...props} /> }} />
