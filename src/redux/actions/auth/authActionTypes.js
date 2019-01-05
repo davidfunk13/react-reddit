@@ -1,8 +1,0 @@
-const actions = {
-AUTHORIZE_REDDIT: "AUTHORIZE_REDDIT",
-TOKEN_SUCCESS: "TOKEN_SUCCESS",
-TOKEN_FAILURE: "TOKEN_FAILURE",
-LOGOUT: "LOGOUT",
-
-}
-export default actions;
