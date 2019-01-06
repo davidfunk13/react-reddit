@@ -16,7 +16,6 @@ export const Auth = {
     },
     isAuthenticated() {
         let expiresAt = JSON.parse(sessionStorage.getItem('expires_at'));
-        console.log(expiresAt)
         return new Date().getTime() < expiresAt;
     },
     logout() {
