@@ -2,22 +2,42 @@ import React, { Component } from 'react';
 import './sass/App.scss';
 import history from './components/Auth/history';
 import { Router, Route } from 'react-router-dom';
-import * as Components from './components/index';
+import { Header, Auth, Unauthorized, Callback, Main, Profile, Saved } from './components/index';
+import {Reddit} from './utils/Reddit';
 
 export default class App extends Component {
+  state = {
+    user: null,
+  }
+  componentDidMount() {
+    Reddit.masterUser().then(User => this.setState({user: User.data}));
+  }
   render() {
     return (
       <Router history={history}>
         <div className="App">
-          <Components.Header auth={Components.Auth} />
+          <Header user={this.state.user} auth={Auth} />
           <Route exact path="/" render={props =>
-            Components.Auth.isAuthenticated() ?
-              <Components.Main {...props} />
+            Auth.isAuthenticated() ?
+            <div><button onClick={()=> console.log(this.state.user)}>clg</button><Main user={this.state.user} {...props} /></div>
+              
               :
-              <Components.Unauthorized {...props} />
+              <Unauthorized user={this.state.user} {...props} />
+          } />
+          <Route exact path="/profile" render={props =>
+            Auth.isAuthenticated() ?
+              <Profile user={this.state.user} {...props} />
+              :
+              <Unauthorized user={this.state.user} {...props} />
+          } />
+          <Route exact path="/saved" render={props =>
+            Auth.isAuthenticated() ?
+              <Saved user={this.state.user} {...props} />
+              :
+              <Unauthorized user={this.state.user} {...props} />
           } />
           <Route path="/callback" render={props => {
-            return <Components.Callback auth={Components.Auth} {...props} />;
+            return <Callback auth={Auth} {...props} />;
           }} />
         </div>
       </Router>
