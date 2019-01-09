@@ -8,13 +8,6 @@ export default class Profile extends Component {
         data: null,
     }
     componentDidMount() {
-        let token = sessionStorage.getItem('t');
-        axios.get('https://oauth.reddit.com/api/v1/me', { headers: { Authorization: 'Bearer ' + token } }).then(response => {
-            this.setState({
-                isFetching: false,
-                data: response.data
-            })
-        }).then(()=> console.log(this.state))
     }
 
     render() {

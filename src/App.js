@@ -6,29 +6,24 @@ import { Header, Auth, Unauthorized, Callback, Main, Profile, Saved } from './co
 import { Reddit } from './utils/Reddit';
 
 export default class App extends Component {
-  
+
   state = {
+    isFetching: true,
     user: null,
   }
 
   componentDidMount() {
-    Reddit.masterUser().then(User => {
-      switch (User.status) {
-        case 200:
-          this.setState({ user: User.data });
-          break;
-        case 401:
-          this.setState({ user: null });
-          break;
-        default:
-          this.setState({ user: null })
-          break;
-      }
-    });
+    if (sessionStorage.getItem('t')) {
+      let token = sessionStorage.getItem('t');
+      Reddit.masterUser(token).then(User => {
+         this.setState({ isFetching: false, user: User });
+      });
+    }
   }
 
   render() {
     let user = this.state.user;
+    console.log(user)
     return (
       <Router history={history}>
         <div className="App">
