@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Reddit } from '../../utils/Reddit';
+import PostsHOC from '../PostsHOC/PostsHOC';
 export default class Saved extends Component {
     state = {
         saved: []
@@ -18,9 +19,7 @@ export default class Saved extends Component {
             <div>
                 <p>Saved</p>
                 <div>
-                    {this.state.saved.length ? this.state.saved.map(saved => {
-                        return <div key={saved.data.id}>{saved.data.title}</div>
-                    }) : <div>Loading...</div>}
+                    {this.state.saved.length ? <PostsHOC posts={this.state.saved}/> : <div>Loading...</div>}
                 </div>
                 <Link to="/">Back</Link>
             </div>
