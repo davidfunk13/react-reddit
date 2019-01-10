@@ -4,3 +4,14 @@
      max-height: 9vh;
  }
 }
+.comment{
+    width: 90vw;
+        height: 10vh;
+        border: 1px solid black;
+    p{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        
+    }
+}
