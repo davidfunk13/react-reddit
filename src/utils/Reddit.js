@@ -19,12 +19,25 @@ export const Reddit = {
             });
     }
 }
+
 export const postFunctions = {
     allTypes: (posts) => {
         return posts.map(post => {
-            return <div>
-                <p>{post.kind}</p>
-            </div>
+            console.log(post.kind)
+            switch (post.kind) {
+                case 't1':
+                    return <div className='comment'>
+                        <p>{post.data.author}</p>
+                        <p>{post.data.body}</p>
+                    </div>
+                case 't3':
+                    return <div className='comment'>
+                        <p>{post.data.author}</p>
+                        <p>{post.data.url}</p>
+                    </div>
+                default:
+                    return 'something went wrong!'
+            }
         })
     },
     returnComments: (comments) => {
@@ -36,8 +49,9 @@ export const postFunctions = {
         })
     },
     returnLinks: (links) => {
-       return links.map(link => {
-           return <div className='comment'>
+        console.log(links)
+        return links.map(link => {
+            return <div className='comment'>
                 <p>{link.data.author}</p>
                 <p>{link.data.url}</p>
             </div>
