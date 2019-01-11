@@ -16,7 +16,7 @@ export default class App extends Component {
     if (sessionStorage.getItem('t')) {
       let token = sessionStorage.getItem('t');
       Reddit.masterUser(token).then(User => {
-         this.setState({ isFetching: false, user: User });
+        this.setState({ isFetching: false, user: User });
       });
     }
   }
@@ -34,7 +34,7 @@ export default class App extends Component {
               :
               <Unauthorized user={user} {...props} />
           } />
-          <Route exact path="/profile" render={props =>
+          {/* <Route exact path="/profile" render={props =>
             Auth.isAuthenticated() ?
               <Profile user={user} {...props} />
               :
@@ -45,7 +45,7 @@ export default class App extends Component {
               <Saved user={user} {...props} />
               :
               <Unauthorized user={user} {...props} />
-          } />
+          } /> */}
           <Route path="/callback" render={props => {
             return <Callback user={user} auth={Auth} {...props} />;
           }} />

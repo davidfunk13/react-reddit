@@ -32,7 +32,9 @@ export default class PostsHOC extends Component {
                 <button onClick={() => this.setState({ showType: 'link' })}>Links</button>
                 <div>
                     {this.state.showType}
+                    <div className='post-container--window'>
                     {this.displayPostsOfType()}
+                    </div>
                 </div>
             </div>
 

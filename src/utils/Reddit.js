@@ -23,17 +23,28 @@ export const Reddit = {
 export const postFunctions = {
     allTypes: (posts) => {
         return posts.map(post => {
-            console.log(post.kind)
             switch (post.kind) {
                 case 't1':
-                    return <div className='comment'>
-                        <p>{post.data.author}</p>
-                        <p>{post.data.body}</p>
+                    return <div className='post'>
+                        <div>
+                            <p>Author:</p>
+                            <p>{post.data.author}</p>
+                        </div>
+                        <div>
+                            <p>Comment:</p>
+                            <p>{post.data.body}</p>
+                        </div>
                     </div>
                 case 't3':
-                    return <div className='comment'>
-                        <p>{post.data.author}</p>
-                        <p>{post.data.url}</p>
+                    return <div className='post'>
+                        <div>
+                            <p>Author:</p>
+                            <p>{post.data.author}</p>
+                        </div>
+                        <div>
+                            <p>URL:</p>
+                            <p>{post.data.url}</p>
+                        </div>
                     </div>
                 default:
                     return 'something went wrong!'
@@ -42,18 +53,30 @@ export const postFunctions = {
     },
     returnComments: (comments) => {
         return comments.map(comment => {
-            return <div className='comment'>
-                <p>{comment.data.author}</p>
-                <p>{comment.data.body}</p>
+            return <div className='post'>
+                <div>
+                    <p>Author:</p>
+                    <p>{comment.data.author}</p>
+                </div>
+                <div>
+                    <p>Comment:</p>
+                    <p>{comment.data.body}</p>
+                </div>
             </div>
         })
     },
     returnLinks: (links) => {
         console.log(links)
         return links.map(link => {
-            return <div className='comment'>
-                <p>{link.data.author}</p>
-                <p>{link.data.url}</p>
+            return <div className='post'>
+                <div>
+                    <p>Author:</p>
+                    <p>{link.data.author}</p>
+                </div>
+                <div>
+                    <p>URL:</p>
+                    <p>{link.data.url}</p>
+                </div>
             </div>
         })
     }
