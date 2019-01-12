@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import './sass/App.scss';
 import history from './components/Auth/history';
 import { Router, Route } from 'react-router-dom';
-import { Header, Auth, Unauthorized, Callback, Main } from './components/index';
+import { Header, Auth, Unauthorized, Callback, Main, Saved, Profile } from './components/index';
 import { Reddit } from './utils/Reddit';
 import { headerStyles } from './utils/materialUIStyles/index';
 import { withStyles } from "@material-ui/core/styles";
+import classNames from "classnames";
 
 class App extends Component {
-  
+
   state = {
     open: false,
     isFetching: true,
@@ -27,44 +28,49 @@ class App extends Component {
   toggleDrawer = () => {
     this.setState({ open: !this.state.open });
   };
+
   logout = () => {
     if (this.state.open === true) {
-        this.setState({ open: false })
-        Auth.logout();
+      this.setState({ open: false })
+      Auth.logout();
     }
-};
+  };
 
   render() {
     const { open, user } = this.state;
     const { classes } = this.props;
+    const logout = this.logout;
+    const toggle = this.toggleDrawer;
+    const auth = Auth;
+    let store = { open, user, classes, classNames, logout, toggle, auth }
     return (
       <Router history={history}>
         <div className="App">
-          <Header classes={classes} logout={this.logout} toggle={this.toggleDrawer} open={open} user={user} auth={Auth} />
+          <Header store={store} />
           <Route exact path="/" render={props =>
             Auth.isAuthenticated() ?
-              <Main classes={classes} open={open} user={user} {...props} />
+              <Main store={store} {...props} />
               :
-              <Unauthorized classes={classes} open={open} user={user} {...props} />
+              <Unauthorized store={store} {...props} />
           } />
-          {/* <Route exact path="/profile" render={props =>
+          <Route exact path="/profile" render={props =>
             Auth.isAuthenticated() ?
-              <Profile user={user} {...props} />
+              <Profile store={store} {...props} />
               :
-              <Unauthorized user={user} {...props} />
+              <Unauthorized store={store} {...props} />
           } />
           <Route exact path="/saved" render={props =>
             Auth.isAuthenticated() ?
-              <Saved user={user} {...props} />
+              <Saved store={store} {...props} />
               :
-              <Unauthorized user={user} {...props} />
-          } /> */}
+              <Unauthorized store={store} {...props} />
+          } />
           <Route path="/callback" render={props => {
-            return <Callback classes={classes} open={open} user={user} auth={Auth} {...props} />;
+            return <Callback store={store} {...props} />;
           }} />
         </div>
       </Router>
     );
   }
 };
-export default withStyles(headerStyles, {withTheme: true})(App)
+export default withStyles(headerStyles, { withTheme: true })(App)

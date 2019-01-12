@@ -3,9 +3,6 @@ import React, { Component } from "react";
 import { Auth } from '../Auth';
 import history from '../history'
 import { Typography } from '@material-ui/core/';
-import classNames from "classnames"
-
-
 
 export default class Callback extends Component {
     componentDidMount() {
@@ -18,7 +15,7 @@ export default class Callback extends Component {
     }
 
     render() {
-        const { open, classes } = this.props;
+        const { open, classes, classNames } = this.props.store;
         return (
             <div>
                 <main className={classNames(classes.content, {[classes.contentShift]: open})} >

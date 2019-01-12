@@ -1,13 +1,13 @@
 
 import React, { Component } from "react";
 import {Typography } from '@material-ui/core/';
-import classNames from "classnames"
+
 
 
 
 export default class Main extends Component {
     render() {
-        const { open, classes } = this.props;
+        const { open, classNames, classes } = this.props.store;
         return (
             <div >
                 <main className={classNames(classes.content, {[classes.contentShift]: open})} >
