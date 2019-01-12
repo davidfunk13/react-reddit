@@ -1,32 +1,34 @@
 
 import React, { Component } from "react";
-import { Link } from 'react-router-dom'
-import { Tabs, Tab, TabContainer, Typography, Button, Paper } from '@material-ui/core/';
-import { Profile, Saved } from '../index';
+import {Typography } from '@material-ui/core/';
+import classNames from "classnames"
 
 
 
 export default class Main extends Component {
-    // state = {
-    //     value: 'one',
-    // };
-    // handleChange = (event, value) => {
-    //     this.setState({ value });
-    //   };
     render() {
-        // const { value } = this.state;
+        const { open, classes } = this.props;
         return (
-            <div style={{marginTop: '20rem'}}>
-                <p>HERRO</p>
-                {/* <Tabs value={this.state.value} onChange={this.handleChange}>
-                    <Tab value="one" label="Profile" />
-                    <Tab value="two" label="Saved" />
-                </Tabs>
-                {value === 'one' && <Profile user={this.props.user} />}
-                {value === 'two' && <Saved user={this.props.user} />} */}
-                {/* <Button component={Link} to={"/profile"}  variant="contained" color={'default'}  >Profile</Button> */}
-                {/* <Button component={Link} to={"/saved"} variant="contained" color={'default'} >Saved</Button> */}
+            <div >
+                <main className={classNames(classes.content, {[classes.contentShift]: open})} >
+                    <Typography>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
+                        dolor purus non enim praesent elementum facilisis leo vel. Risus at
+                        ultrices mi tempus imperdiet. Semper risus in hendrerit gravida
+                        rutrum quisque non tellus. Convallis convallis tellus id interdum
+                        velit laoreet id donec ultrices. Odio morbi quis commodo odio aenean
+                        sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
+                        integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
+                        eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
+                        quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
+                        vivamus at augue. At augue eget arcu dictum varius duis at
+                        consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
+                        donec massa sapien faucibus et molestie ac.
+                    </Typography>
+                </main>
             </div>
+
         );
     }
 }
