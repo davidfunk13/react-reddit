@@ -8,6 +8,7 @@ import { Reddit } from './utils/Reddit';
 export default class App extends Component {
 
   state = {
+    open: false,
     isFetching: true,
     user: null,
   }

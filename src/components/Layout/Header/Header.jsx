@@ -1,38 +1,75 @@
 import React, { Component, Fragment } from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, LeftNav, MenuItem, Drawer  } from '@material-ui/core/';
-import MenuIcon from '@material-ui/icons/Menu';
-import styles from '../../../utils/materialUI';
+import { withStyles } from "@material-ui/core/styles";
+import { AppBar, Toolbar, Typography, IconButton, Drawer, Divider, List, ListItem, ListItemText } from '@material-ui/core/';
+import { Menu as MenuIcon, Lock as LockIcon, ChevronLeft as ChevronLeftIcon } from '@material-ui/icons/';
+import {headerStyles} from '../../../utils/materialUIStyles/index';
+import classNames from "classnames";
 let authorize = `https://www.reddit.com/api/v1/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&response_type=${process.env.REACT_APP_RESPONSE_TYPE}&state=${process.env.REACT_APP_RANDOM_STRING}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&scope=${process.env.REACT_APP_SCOPE_STRING}`
 
+
 class Header extends Component {
+
     state = {
         open: false
     };
+    componentDidMount(){
+        console.log(this.props)
+    }
 
     toggleDrawer = () => {
         this.setState({ open: !this.state.open });
     };
 
+    logout = () => {
+        if (this.state.open === true) {
+            this.setState({ open: false })
+            this.props.auth.logout()
+        }
+    };
+
     render() {
+        const { classes } = this.props;
+        const { open } = this.state;
         return (
+
             <Fragment>
-                <AppBar position={"static"}>
+                <AppBar position={"fixed"} className={classNames(classes.appBar, { [classes.appBarShift]: open })}>
                     <Toolbar>
-                        <IconButton onClick={this.toggleDrawer} color="inherit" aria-label="Menu">
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant={'h6'} color="inherit">Poop</Typography>
                         {this.props.auth.isAuthenticated() ?
-                            <Button style={styles.header.buttons} variant={"contained"} color={"secondary"} size={"large"} onClick={() => this.props.auth.logout()}>
-                                Logout
-                        </Button>
+                            <IconButton onClick={this.toggleDrawer} color="inherit" aria-label="Menu">
+                                <MenuIcon className={classes.MenuIcon} />
+                            </IconButton>
                             :
-                            <Button style={styles.header.buttons} variant="contained" color={'default'} href={authorize}>Authorize Reddit</Button>
+                            <IconButton href={authorize}>
+                                <LockIcon />
+                            </IconButton>
                         }
+                        <Typography variant={'h6'} color="inherit">React + RedditApi</Typography>
                     </Toolbar>
                 </AppBar>
-                <Drawer variant="permanent">
-                        <p>POOP</p>
+                <Drawer
+                    variant="persistent"
+                    anchor="left"
+                    open={open}
+                    className={classes.drawer}
+                    classes={{
+                        paper: classes.drawerPaper
+                    }}
+                >
+                    <div >
+                        <IconButton onClick={this.toggleDrawer}>
+                            <ChevronLeftIcon />
+                        </IconButton>
+                    </div>
+                    <Divider />
+                    <List>
+                        <ListItem button >
+                            {/* <ListItemIcon> */}
+                            <LockIcon />
+                            {/* </ListItemIcon> */}
+                            <ListItemText onClick={() => this.logout()} primary={'Logout'} />
+                        </ListItem>
+                    </List>
                 </Drawer>
             </Fragment>
         )
@@ -40,4 +77,4 @@ class Header extends Component {
 
 };
 
-export default Header;
+export default withStyles(headerStyles)(Header);

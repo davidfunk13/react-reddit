@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom'
 import { Tabs, Tab, TabContainer, Typography, Button, Paper } from '@material-ui/core/';
 import { Profile, Saved } from '../index';
-import styles from '../../utils/materialUI';
+
 
 
 export default class Main extends Component {
@@ -16,7 +16,8 @@ export default class Main extends Component {
     render() {
         // const { value } = this.state;
         return (
-            <div>
+            <div style={{marginTop: '20rem'}}>
+                <p>HERRO</p>
                 {/* <Tabs value={this.state.value} onChange={this.handleChange}>
                     <Tab value="one" label="Profile" />
                     <Tab value="two" label="Saved" />
