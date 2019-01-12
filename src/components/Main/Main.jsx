@@ -7,22 +7,22 @@ import styles from '../../utils/materialUI';
 
 
 export default class Main extends Component {
-    state = {
-        value: 'one',
-    };
-    handleChange = (event, value) => {
-        this.setState({ value });
-      };
+    // state = {
+    //     value: 'one',
+    // };
+    // handleChange = (event, value) => {
+    //     this.setState({ value });
+    //   };
     render() {
-        const { value } = this.state;
+        // const { value } = this.state;
         return (
             <div>
-                <Tabs value={this.state.value} onChange={this.handleChange}>
+                {/* <Tabs value={this.state.value} onChange={this.handleChange}>
                     <Tab value="one" label="Profile" />
                     <Tab value="two" label="Saved" />
                 </Tabs>
                 {value === 'one' && <Profile user={this.props.user} />}
-                {value === 'two' && <Saved user={this.props.user} />}
+                {value === 'two' && <Saved user={this.props.user} />} */}
                 {/* <Button component={Link} to={"/profile"}  variant="contained" color={'default'}  >Profile</Button> */}
                 {/* <Button component={Link} to={"/saved"} variant="contained" color={'default'} >Saved</Button> */}
             </div>
