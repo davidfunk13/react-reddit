@@ -25,7 +25,7 @@ export default class Saved extends Component {
                 <div>
                     <main className={classNames(classes.content, { [classes.contentShift]: open })} >
                         {this.state.saved.length ?
-                            <PostsHOC posts={this.state.saved} />
+                            <PostsHOC posts={this.state.saved} {...this.props} />
                             :
                             <Typography>
                                 Saved

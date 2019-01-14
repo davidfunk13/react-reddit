@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios';
+import { paperStyles } from './materialUIStyles';
 import { Paper, Typography, Grid, Avatar } from '@material-ui/core';
 
 export const Reddit = {
@@ -23,40 +24,25 @@ export const postFunctions = {
         return posts.map(post => {
             switch (post.kind) {
                 case 't1':
-                    return <Paper style={{height: '10vh'}}>
-                            <Grid container spacing={10}>
-                                 <Grid item>
-                                    <Avatar>All</Avatar>
+                    return (
+                        <Paper key={post.data.id} style={paperStyles.paper}>
+                            <Grid container spacing={16}>
+                                <Grid item>
+                                    <Avatar>A</Avatar>
                                 </Grid>
-                            {/* <Grid item zeroMinWidth>
-                                <Typography noWrap>Author:</Typography>
-                                <Typography noWrap>{post.data.author}</Typography>
-                            </Grid> */}
-                            {/* <Grid item zeroMinWidth>
-                                <Typography noWrap>Comment:</Typography>
-                                <Typography noWrap>{post.data.body}</Typography>
-                            </Grid> */}
-                        </Grid>
-                    </Paper>
-
+                            </Grid>
+                        </Paper>
+                    )
                 case 't3':
-                    return <Paper>
-                        <Grid container spacing={10}>
-                            {/* <Grid item>
-                                <Avatar>All</Avatar>
+                    return (
+                        <Paper key={post.data.id} style={paperStyles.paper}>
+                            <Grid container spacing={16}>
+                                <Grid item>
+                                    <Avatar>A</Avatar>
+                                </Grid>
                             </Grid>
-                            <Grid item zeroMinWidth>
-
-                                <Typography noWrap>Author:</Typography>
-                                <Typography noWrap>{post.data.author}</Typography>
-                            </Grid>
-                            <Grid item zeroMinWidth>
-
-                                <Typography noWrap>Url:</Typography>
-                                <Typography noWrap>{post.data.url}</Typography>
-                            </Grid> */}
-                        </Grid>
-                    </Paper>
+                        </Paper>
+                    )
                 default:
                     return 'something went wrong!'
             }
@@ -64,51 +50,29 @@ export const postFunctions = {
     },
     returnComments: (comments) => {
         return comments.map(comment => {
-            return <Paper>
-                <Grid container spacing={10}>
-                    <Grid container >
+            return (
+                <Paper key={comment.data.id} style={paperStyles.paper}>
+                    <Grid container spacing={16}>
                         <Grid item>
-                            <Avatar>All</Avatar>
+                            <Avatar>A</Avatar>
                         </Grid>
                     </Grid>
-                    <Grid container>
-                        <Grid item zeroMinWidth>
-
-                            <Typography noWrap>Author:</Typography>
-                            <Typography noWrap>{comment.data.author}</Typography>
-                        </Grid>
-                        <Grid item zeroMinWidth>
-
-                            <Typography noWrap>Url:</Typography>
-                            <Typography noWrap>{comment.data.url}</Typography>
-                        </Grid>
-                    </Grid>
-                </Grid>
-
-            </Paper>
-
+                </Paper>
+            )
         })
     },
     returnLinks: (links) => {
         console.log(links)
         return links.map(link => {
-            return <Paper>
-                <Grid container spacing={10}>
-                    <Grid item>
-                        <Avatar>All</Avatar>
+            return (
+                <Paper key={link.data.id} style={paperStyles.paper}>
+                    <Grid container spacing={16}>
+                        <Grid item>
+                            <Avatar>A</Avatar>
+                        </Grid>
                     </Grid>
-                    <Grid item zeroMinWidth>
-
-                        <Typography noWrap>Author:</Typography>
-                        <Typography noWrap>{link.data.author}</Typography>
-                    </Grid>
-                    <Grid item zeroMinWidth>
-
-                        <Typography noWrap>Url:</Typography>
-                        <Typography noWrap>{link.data.url}</Typography>
-                    </Grid>
-                </Grid>
-            </Paper>
+                </Paper>
+            )
         })
     }
 }

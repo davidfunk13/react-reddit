@@ -53,6 +53,10 @@ const headerStyles = (theme) => ({
             duration: theme.transitions.duration.enteringScreen
         }),
         marginLeft: drawerWidth
+    },
+    paper: {
+        height: '10rem',
+        marginBottom: '2rem',
     }
 });
 export default headerStyles;
