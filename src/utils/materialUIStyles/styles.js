@@ -56,7 +56,7 @@ const styles = (theme) => ({
     },
     paper: {
         height: '10vh',
-        width: '80vw',
+        width: '50vw',
         marginBottom: '2rem',
     },
     tabs: {

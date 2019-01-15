@@ -11,8 +11,7 @@ export default class AllPosts extends Component {
         const { posts } = this.props
         const {classes, classNames} = this.props.store
         return (
-            <Grid container justify={'center'}>
-                {posts.map(post => {
+                posts.map(post => {
                     switch (post.kind) {
                         case 't1':
                             return (
@@ -37,10 +36,7 @@ export default class AllPosts extends Component {
                         default:
                             return 'something went wrong!'
                     }
-                })}
-            </Grid>
-
-
+                })
         )
     }
 }
