@@ -11,7 +11,7 @@ export default class CommentPosts extends Component {
         return (
                 posts.map(post => {
                     return (
-                        <Paper className={classes.paper} key={post.data.id} >
+                        <Paper centered className={classes.paper} key={post.data.id} >
                             <Grid container spacing={16}>
                                 <Grid item>
                                     <Avatar>C</Avatar>

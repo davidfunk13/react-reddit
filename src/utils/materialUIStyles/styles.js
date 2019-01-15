@@ -1,8 +1,8 @@
 const drawerWidth = 240;
 
 const styles = (theme) => ({
-
     appBar: {
+        whiteSpace: 'nowrap',
         transition: theme.transitions.create(["margin", "width"], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen
@@ -38,6 +38,7 @@ const styles = (theme) => ({
         justifyContent: "flex-end"
     },
     content: {
+        width: '80vw',
         flexGrow: 1,
         padding: theme.spacing.unit * 3,
         transition: theme.transitions.create("margin", {
@@ -56,15 +57,16 @@ const styles = (theme) => ({
     },
     paper: {
         height: '10vh',
-        width: '50vw',
+        width: '75vw',
         marginBottom: '2rem',
     },
     tabs: {
         width: '100%',
         marginBottom: '1rem'
     },
-    root: {
-        flexGrow:1
+    posts: {
+        height: '70vh',
+        overflow: 'auto',
     }
 });
 

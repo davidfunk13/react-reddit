@@ -42,7 +42,7 @@ class App extends Component {
     const logout = this.logout;
     const toggle = this.toggleDrawer;
     const auth = Auth;
-    let store = { open, user, classes, classNames, logout, toggle, auth }
+    let store = { open, user, classes, classNames, logout, toggle, auth };
     return (
       <Router history={history}>
         <div className="App">

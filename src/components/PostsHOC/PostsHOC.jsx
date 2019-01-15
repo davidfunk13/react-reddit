@@ -17,7 +17,7 @@ export default class PostsHOC extends Component {
         const { value } = this.state;
         const { classes } = this.props.store;
         return (
-            <Grid spacing={40} justify={"center"} container>
+            <Grid justify={'center'} spacing={40} container>
                 <Grid item>
                     <Tabs centered value={value} onChange={this.handleChange}>
                         <Tab label="All Posts" />
@@ -25,7 +25,7 @@ export default class PostsHOC extends Component {
                         <Tab label="Links" />
                     </Tabs>
                 </Grid>
-                <Grid justify={'center'} item>
+                <Grid className={classes.posts} justify={'center'} container>
                     {value === 0 && <AllPosts posts={this.props.posts} {...this.props} />}
                     {value === 1 && <CommentPosts posts={this.props.posts.filter(post => post.kind === 't1')} {...this.props} />}
                     {value === 2 && <LinkPosts posts={this.props.posts.filter(post => post.kind === 't3')} {...this.props} />}

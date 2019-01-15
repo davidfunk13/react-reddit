@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Reddit } from '../../utils/Reddit';
 import PostsHOC from '../PostsHOC/PostsHOC';
-import { Typography } from '@material-ui/core/';
+import { Typography, Grid } from '@material-ui/core/';
 
 export default class Saved extends Component {
     state = {
@@ -20,21 +20,18 @@ export default class Saved extends Component {
     render() {
         const { classNames, open, classes } = this.props.store;
         return (
-            <div>
-                <p>Saved</p>
-                <div>
-                    <main className={classNames(classes.content, { [classes.contentShift]: open })} >
-                        {this.state.saved.length ?
-                            <PostsHOC posts={this.state.saved} {...this.props} />
-                            :
-                            <Typography>
-                                Saved
+            <Grid container justify={"center"}>
+                <main className={classNames(classes.content, { [classes.contentShift]: open })} >
+                    {this.state.saved.length ?
+                        <PostsHOC posts={this.state.saved} {...this.props} />
+                        :
+                        <Typography>
+                            Saved
                          </Typography>
-                        }
-                    </main>
-                </div>
+                    }
+                </main>
                 <Link to="/">Back</Link>
-            </div>
+            </Grid>
         )
     }
 }

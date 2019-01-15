@@ -11,7 +11,7 @@ export default class Main extends Component {
         return (
             <div >
                 <main className={classNames(classes.content, {[classes.contentShift]: open})} >
-                    <Typography>
+                    <Typography className={classes.main}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                         eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
                         dolor purus non enim praesent elementum facilisis leo vel. Risus at
