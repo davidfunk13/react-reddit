@@ -60,6 +60,9 @@ const styles = (theme) => ({
         width: '75vw',
         marginBottom: '2rem',
     },
+    postPaperGrid: {
+        height: '100%',
+    },
     tabs: {
         width: '100%',
         marginBottom: '1rem'
