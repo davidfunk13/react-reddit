@@ -1,6 +1,6 @@
 const drawerWidth = 240;
 
-const headerStyles = (theme) => ({
+const styles = (theme) => ({
 
     appBar: {
         transition: theme.transitions.create(["margin", "width"], {
@@ -55,8 +55,10 @@ const headerStyles = (theme) => ({
         marginLeft: drawerWidth
     },
     paper: {
-        height: '10rem',
+        height: '10vh',
+        width: '80vw',
         marginBottom: '2rem',
     }
 });
-export default headerStyles;
+
+export default styles;

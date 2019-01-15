@@ -4,7 +4,7 @@ import history from './components/Auth/history';
 import { Router, Route } from 'react-router-dom';
 import { Header, Auth, Unauthorized, Callback, Main, Saved, Profile } from './components/index';
 import { Reddit } from './utils/Reddit';
-import { headerStyles } from './utils/materialUIStyles/index';
+import styles from './utils/materialUIStyles/styles';
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 
@@ -73,4 +73,4 @@ class App extends Component {
     );
   }
 };
-export default withStyles(headerStyles, { withTheme: true })(App)
+export default withStyles(styles, { withTheme: true })(App)

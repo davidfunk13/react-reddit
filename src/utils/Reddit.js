@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios';
-import { paperStyles } from './materialUIStyles';
 import { Paper, Typography, Grid, Avatar } from '@material-ui/core';
 
 export const Reddit = {
@@ -25,7 +24,7 @@ export const postFunctions = {
             switch (post.kind) {
                 case 't1':
                     return (
-                        <Paper key={post.data.id} style={paperStyles.paper}>
+                        <Paper key={post.data.id} >
                             <Grid container spacing={16}>
                                 <Grid item>
                                     <Avatar>A</Avatar>
@@ -35,7 +34,7 @@ export const postFunctions = {
                     )
                 case 't3':
                     return (
-                        <Paper key={post.data.id} style={paperStyles.paper}>
+                        <Paper key={post.data.id} >
                             <Grid container spacing={16}>
                                 <Grid item>
                                     <Avatar>A</Avatar>
@@ -51,7 +50,7 @@ export const postFunctions = {
     returnComments: (comments) => {
         return comments.map(comment => {
             return (
-                <Paper key={comment.data.id} style={paperStyles.paper}>
+                <Paper key={comment.data.id} >
                     <Grid container spacing={16}>
                         <Grid item>
                             <Avatar>A</Avatar>
@@ -65,7 +64,7 @@ export const postFunctions = {
         console.log(links)
         return links.map(link => {
             return (
-                <Paper key={link.data.id} style={paperStyles.paper}>
+                <Paper key={link.data.id} >
                     <Grid container spacing={16}>
                         <Grid item>
                             <Avatar>A</Avatar>
