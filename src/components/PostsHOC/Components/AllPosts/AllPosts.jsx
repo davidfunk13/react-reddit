@@ -11,7 +11,7 @@ export default class AllPosts extends Component {
         const { posts } = this.props
         const {classes, classNames} = this.props.store
         return (
-            <Grid>
+            <Grid container justify={'center'}>
                 {posts.map(post => {
                     switch (post.kind) {
                         case 't1':

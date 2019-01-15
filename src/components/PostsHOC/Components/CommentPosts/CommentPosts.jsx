@@ -9,13 +9,13 @@ export default class CommentPosts extends Component {
         const { posts } = this.props
         const { classes, classNames } = this.props.store
         return (
-            <Grid>
+            <Grid container justify={'center'}>
                 {posts.map(post => {
                     return (
                         <Paper className={classes.paper} key={post.data.id} >
                             <Grid container spacing={16}>
                                 <Grid item>
-                                    <Avatar>Comments</Avatar>
+                                    <Avatar>C</Avatar>
                                 </Grid>
                             </Grid>
                         </Paper>

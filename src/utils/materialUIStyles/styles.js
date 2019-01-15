@@ -58,6 +58,13 @@ const styles = (theme) => ({
         height: '10vh',
         width: '80vw',
         marginBottom: '2rem',
+    },
+    tabs: {
+        width: '100%',
+        marginBottom: '1rem'
+    },
+    root: {
+        flexGrow:1
     }
 });
 
