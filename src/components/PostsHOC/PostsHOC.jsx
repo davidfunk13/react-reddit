@@ -17,21 +17,20 @@ export default class PostsHOC extends Component {
         const { value } = this.state;
         const { classes } = this.props.store;
         return (
-            <Grid container>
+            <Grid justify="center" container>
                 <Grid item>
                     <Tabs value={value} onChange={this.handleChange}>
                         <Tab label="All Posts" />
-                        <Tab label="Comments" />
-                        <Tab label="Links" />
+                        <Tab disabled label="Comments" />
+                        <Tab disabled label="Links" />
                     </Tabs>
                 </Grid>
-                <Grid className={classes.posts} container>
+                <Grid className={classes.postGrid} justify="center" className={classes.posts} container>
                     <Grid item>
                         {value === 0 && <AllPosts posts={this.props.posts} {...this.props} />}
                         {value === 1 && <CommentPosts posts={this.props.posts.filter(post => post.kind === 't1')} {...this.props} />}
                         {value === 2 && <LinkPosts posts={this.props.posts.filter(post => post.kind === 't3')} {...this.props} />}
                     </Grid>
-
                 </Grid>
             </Grid>
         )

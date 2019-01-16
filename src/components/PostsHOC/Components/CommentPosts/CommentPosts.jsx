@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Paper, Typography, Grid, Avatar } from '@material-ui/core';
+import { Paper, Typography, Grid, Avatar, Card, CardMedia } from '@material-ui/core';
+import thumb from '../AllPosts/thumb.png'
 export default class CommentPosts extends Component {
     componentDidMount() {
         console.log(this.props)
@@ -11,13 +12,13 @@ export default class CommentPosts extends Component {
         return (
                 posts.map(post => {
                     return (
-                        <Paper centered className={classes.paper} key={post.data.id} >
-                            <Grid container spacing={16}>
-                                <Grid item>
-                                    <Avatar>C</Avatar>
-                                </Grid>
-                            </Grid>
-                        </Paper>
+                        <Paper key={post.data.id} className={classes.paper} elevation={4}>
+                        <Card className={classes.postCard}>
+                            <CardMedia className={classes.postThumb} image={thumb}>
+
+                            </CardMedia>
+                        </Card>
+                       </Paper>
                     )
                 })
         )

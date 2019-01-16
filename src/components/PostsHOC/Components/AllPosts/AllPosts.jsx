@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import { Paper, Typography, Grid, Avatar } from '@material-ui/core';
-
+import { Paper, Typography, Grid, Avatar, Card, CardMedia } from '@material-ui/core';
+import thumb from './thumb.png'
 export default class AllPosts extends Component {
     componentDidMount() {
         console.log(this.props)
@@ -15,54 +15,47 @@ export default class AllPosts extends Component {
                 switch (post.kind) {
                     case 't1':
                         return (
-                            <Paper key={post.data.id} className={classes.paper}>
-                                <Grid className={classes.postPaperGrid} container alignItems={"center"} justify={"flex-start"} alignContent={"space-between"}>
-                                    <Grid item>
-                                        <div style={{ margin: '1.2rem', backgroundColor: 'red', height: '5rem', width: '5rem' }}></div>
+                            <Paper key={post.data.id} className={classes.paper} elevation={4}>
+                                <Grid container direction="row" alignItems="center" alignContent="space-around" justify={"flex-start"} spacing={0}>
+                                    <Grid item xs={3}>
+                                        <Card className={classes.postCard} >
+                                            <CardMedia className={classes.postThumb} image={thumb}>
+
+                                            </CardMedia>
+                                        </Card>
                                     </Grid>
-                                    <Grid item>
-                                        <Grid container direction={"column"}>
-                                            <Grid item>
-
-                                                <Typography>
-                                                    Poop
+                                    <Grid  item xs={9} >
+                                        <Typography gutterBottom>
+                                           Author: {post.data.author}
                                         </Typography>
-                                            </Grid>
-                                            <Grid item>
-                                                <Typography>
-                                                    Also poop
+                                        <Typography className={classes.postText} noWrap>
+                                            Comment: "{post.data.body}"
                                         </Typography>
-                                            </Grid>
-
-                                        </Grid>
-
                                     </Grid>
                                 </Grid>
                             </Paper>
                         )
                     case 't3':
                         return (
-                            <Paper key={post.data.id} className={classes.paper}>
-                            <Grid className={classes.postPaperGrid} container alignItems={"center"} justify={"flex-start"} alignContent={"space-between"}>
-                                <Grid item>
-                                    <div style={{ margin: '1.2rem', backgroundColor: 'red', height: '5rem', width: '5rem' }}></div>
+                            
+                            <Paper key={post.data.id} className={classes.paper} elevation={4}>
+                            <Grid container direction="row" alignItems="center" alignContent="space-around" justify={"flex-start"} spacing={0}>
+                                <Grid item xs={3}>
+                                    <Card className={classes.postCard} >
+                                        <CardMedia className={classes.postThumb} image={post.data.url}>
+                                        </CardMedia>
+                                    </Card>
                                 </Grid>
-                                <Grid item>
-                                    <Grid container direction={"column"}>
-                                        <Grid item>
-
-                                            <Typography>
-                                                Poop
+                                <Grid  item xs={9} >
+                                    <Typography gutterBottom>
+                                       Author: {post.data.author}
                                     </Typography>
-                                        </Grid>
-                                        <Grid item>
-                                            <Typography>
-                                                Also poop
+                                    <Typography className={classes.postText} noWrap>
+                                        Title: "{post.data.Title}"
                                     </Typography>
-                                        </Grid>
-
-                                    </Grid>
-
+                                    <Typography className={classes.postText} noWrap>
+                                        URL: "{post.data.url}"
+                                    </Typography>
                                 </Grid>
                             </Grid>
                         </Paper>

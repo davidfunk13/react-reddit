@@ -60,16 +60,23 @@ const styles = (theme) => ({
         width: '75vw',
         marginBottom: '2rem',
     },
-    postPaperGrid: {
-        height: '100%',
-    },
-    tabs: {
-        width: '100%',
-        marginBottom: '1rem'
-    },
+
     posts: {
+        marginTop:'2rem',
+        padding: '2rem',
         height: '70vh',
         overflow: 'auto',
+    },
+    postCard: {
+        height: '10vh',
+        width: '15vw',
+    },
+    postThumb: {
+        width: '100%',
+        height: '100%',
+    },
+    postText: {
+      marginRight: '2rem'
     }
 });
 
