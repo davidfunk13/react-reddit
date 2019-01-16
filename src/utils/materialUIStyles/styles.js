@@ -79,7 +79,7 @@ const styles = (theme) => ({
     },
     gridList: {
         width: '85vw',
-        height: '90vh',
+        // height: '90vh',
     },
 });
 
