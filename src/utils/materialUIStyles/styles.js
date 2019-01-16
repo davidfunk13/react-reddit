@@ -57,10 +57,9 @@ const styles = (theme) => ({
     },
     paper: {
         height: '10vh',
-        width: '75vw',
+        width: '85vw',
         marginBottom: '2rem',
     },
-
     posts: {
         marginTop:'2rem',
         padding: '2rem',
@@ -77,7 +76,11 @@ const styles = (theme) => ({
     },
     postText: {
       marginRight: '2rem'
-    }
+    },
+    gridList: {
+        width: '85vw',
+        height: '90vh',
+    },
 });
 
 export default styles;
