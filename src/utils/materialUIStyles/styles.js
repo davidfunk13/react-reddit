@@ -77,9 +77,16 @@ const styles = (theme) => ({
     postText: {
       marginRight: '2rem'
     },
+    imageContainer: {
+        display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    },
     gridList: {
+        padding: '.5px',
         width: '85vw',
-        // height: '90vh',
+        height: '90vh',
     },
 });
 
