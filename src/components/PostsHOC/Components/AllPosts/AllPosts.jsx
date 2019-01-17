@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Paper, Typography, Grid, Avatar, Card, CardMedia } from '@material-ui/core';
-import thumb from './thumb.png'
+import thumb from '../../assets/img/thumb.png'
 
 export default class AllPosts extends Component {
 
@@ -9,7 +9,6 @@ export default class AllPosts extends Component {
         
         const { posts } = this.props;
         const { classes, classNames } = this.props.store;
-
         return (
             <div>hi</div>
             // posts.map(post => {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Paper, Typography, Grid, Avatar, Card, CardMedia } from '@material-ui/core';
-import thumb from '../AllPosts/thumb.png'
+import thumb from '../../assets/img/thumb.png'
 export default class LinkPost extends Component {
     componentDidMount() {
 
