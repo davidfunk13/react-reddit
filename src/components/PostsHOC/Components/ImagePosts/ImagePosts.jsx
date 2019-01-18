@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import ImageGrid from './Components/ImageGrid/ImageGrid';
-let tileData = []
 export default class ImagePosts extends Component {
-
+  state = {
+    tileData: [],
+  }
 
   makeTiles() {
+    let tileData = []
     const posts = this.props.posts.filter(post => post.kind === 't3' && (post.data.url.includes('gif') || post.data.url.includes('jpg') || post.data.url.includes('jpeg') || post.data.url.includes('png')))
     let randomStart = Math.floor((Math.random() * 3) + 1);
 
@@ -15,21 +17,12 @@ export default class ImagePosts extends Component {
     };
 
     posts.map((post, i) => {
-      let nextTile;
+      console.log(post)
       if (i === 0) {
-        let firstTile = new Tile(post.data.url, post.data.title, randomStart);
-        tileData.push(firstTile);
-        return;
-      } else {
+        let cols = { cols: randomStart }
+        console.log('random' cols);
       }
-
-
-     
-
-
-    })
-
-
+    });
   }
 
   render() {
