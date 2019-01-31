@@ -1,38 +1,43 @@
 import React, { Component } from 'react';
 import ImageGrid from './Components/ImageGrid/ImageGrid';
+
 export default class ImagePosts extends Component {
-  state = {
-    tileData: [],
+  randomNumber = (ceiling) => {
+    return Math.floor(Math.random() * ceiling + 1);
   }
+  totalColumns = (arr) => {
+    let columns = 0;
+    arr.forEach(({ cols }) => columns += cols)
+    return columns;
+  }
+  getPostsWithColumns = (posts) => {
+    const postsWithColumns = posts.reduce((accum, post) => {
 
-  makeTiles() {
-    let tileData = []
-    const posts = this.props.posts.filter(post => post.kind === 't3' && (post.data.url.includes('gif') || post.data.url.includes('jpg') || post.data.url.includes('jpeg') || post.data.url.includes('png')))
-    let randomStart = Math.floor((Math.random() * 3) + 1);
+      const lastIndex = accum.length - 1;
 
-    function Tile(img, title, cols) {
-      this.img = img;
-      this.title = title;
-      this.cols = cols;
-    };
+      if (accum[lastIndex] && this.totalColumns(accum[lastIndex]) < 3) {
+        const currentTotal = this.totalColumns(accum[lastIndex])
 
-    posts.map((post, i) => {
-      console.log(post)
-      if (i === 0) {
-        let cols = { cols: randomStart }
-        console.log('random' cols);
+        const postWithCols = {
+          ...post,
+          cols: currentTotal === 2 ? 1 : this.randomNumber(2)
+        }
+        accum[lastIndex] = [...accum[lastIndex], postWithCols]
+        return accum
       }
-    });
-  }
-
+      const postWithCols = {
+        ...post,
+        cols: this.randomNumber(3)
+      }
+      return [...accum, [postWithCols]];
+    }, []);
+    return postsWithColumns.reduce((accum, group) => [...accum, ...group], []);
+  };
   render() {
-    this.makeTiles()
-    console.log(tileData)
+    const posts = this.props.posts.filter(post => post.kind === 't3' && (post.data.url.includes('gif') || post.data.url.includes('jpg') || post.data.url.includes('jpeg') || post.data.url.includes('png')))
     return (
       <div>
-
-        open grid when i can get tileData figured out.
-        {/* <ImageGrid tileData={this.makeTiles()} {...this.props}/> */}
+        <ImageGrid tileData={this.getPostsWithColumns(posts)} {...this.props} />
       </div>
     );
   }

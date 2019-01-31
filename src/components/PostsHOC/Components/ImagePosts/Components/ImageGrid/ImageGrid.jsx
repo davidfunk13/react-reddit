@@ -8,11 +8,9 @@ export default class ImageGrid extends Component {
     current: {
       img: '',
       title: ''
-    },
-    tiles: [],
+    }
   }
   componentDidMount() {
-    this.setState({ tiles: this.props.tileData });
   }
 
   handleOpen = (img, title) => {
@@ -36,16 +34,15 @@ export default class ImageGrid extends Component {
 
   render() {
     const { classes } = this.props.store;
-    const posts = this.props.posts.filter(post => post.kind === 't3' && (post.data.url.includes('gif') || post.data.url.includes('jpg') || post.data.url.includes('jpeg') || post.data.url.includes('png')))
-    const tiles = this.state.tiles;
+    
 
     return (
       <div>
         <GridList className={classes.gridList} cols={3}>
-          {tiles.map((tile, index) => {
+          {posts.map((tile, index) => {
             console.log(tile)
-            return <GridListTile key={tile.img} cols={tile.cols}>
-              <img onError={(e) => { e.target.onerror = null; e.target.src = thumb }} src={tile.img} alt="" />
+            return <GridListTile key={tile.data.url} cols={tile.cols}>
+              <img onError={(e) => { e.target.onerror = null; e.target.src = thumb }} src={tile.data.url} alt="" />
             </GridListTile>
           })}
         </GridList>
