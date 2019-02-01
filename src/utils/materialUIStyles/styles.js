@@ -88,19 +88,11 @@ const styles = (theme) => ({
         width: '85vw',
         height: '90vh',
     },
-    modal: {
-        position: 'relative',
-        transform: 'translate(-50%, -50%)',
-        top: '50%',
-        left: '50%',
-    },
     modalImg: {
-        position: 'absolute',
-        transform: 'translate(-50%, -50%)',
-        top: '50%',
-        left: '50%',
-        width: '50%',
-        height: '50%',
+        maxWidth: '100%'
+    },
+    dialog: {
+        margin: '0',
     }
 });
 

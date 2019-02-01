@@ -20,7 +20,7 @@ export default class PostsHOC extends Component {
             <Grid justify="center" container>
                 <Grid item>
                     <Tabs value={value} onChange={this.handleChange}>
-                        <Tab disabled label="All Posts" />
+                        <Tab label="All Posts" />
                         <Tab label="Comments" />
                         <Tab label="Links" />
                         <Tab label="Images" />
