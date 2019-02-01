@@ -61,7 +61,7 @@ const styles = (theme) => ({
         marginBottom: '2rem',
     },
     posts: {
-        marginTop:'2rem',
+        marginTop: '2rem',
         padding: '2rem',
         height: '70vh',
         overflow: 'auto',
@@ -75,19 +75,33 @@ const styles = (theme) => ({
         height: '100%',
     },
     postText: {
-      marginRight: '2rem'
+        marginRight: '2rem'
     },
     imageContainer: {
         display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
     },
     gridList: {
         padding: '.5px',
         width: '85vw',
         height: '90vh',
     },
+    modal: {
+        position: 'relative',
+        transform: 'translate(-50%, -50%)',
+        top: '50%',
+        left: '50%',
+    },
+    modalImg: {
+        position: 'absolute',
+        transform: 'translate(-50%, -50%)',
+        top: '50%',
+        left: '50%',
+        width: '50%',
+        height: '50%',
+    }
 });
 
 export default styles;
