@@ -1,6 +1,9 @@
 const drawerWidth = 240;
 
 const styles = (theme) => ({
+    section: {
+        paddingBottom: '1rem'
+    },
     appBar: {
         whiteSpace: 'nowrap',
         transition: theme.transitions.create(["margin", "width"], {
@@ -93,7 +96,7 @@ const styles = (theme) => ({
     },
     dialog: {
         margin: '0',
-    }
+    },
 });
 
 export default styles;

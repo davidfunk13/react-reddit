@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import {Typography } from '@material-ui/core/';
+import { Typography, Divider } from '@material-ui/core/';
 // import classNames from "classnames"
 
 
@@ -9,10 +9,20 @@ export default class Unauthorized extends Component {
     render() {
         const { open, classes, classNames } = this.props.store;
         return (
-            <div >
-                <main className={classNames(classes.content, {[classes.contentShift]: open})} >
-                    <Typography>
-                        Please Authorize Reddit to use this application by clicking the lock icon in the AppBar!
+            <div>
+                <main className={classNames(classes.content, { [classes.contentShift]: open })} >
+                    <Typography component={'h1'} variant="h5" gutterBottom>
+                        Welcome
+                    </Typography>
+                    <Typography component={'p'} gutterBottom>
+                        I am a junior javascript developer, and this is my React based Reddit client!
+                    </Typography>
+                    <Divider />
+                    <Typography component={'h1'} variant="h5"  gutterBottom>
+                        About this App
+                    </Typography>
+                    <Typography component={'p'} gutterBottom>
+                        This was my two-in-one attempt at learning oAuth as well as MaterialUI. I am a fullstack developer, but wanted to take this project to work on polishing my front end capabilities.
                     </Typography>
                 </main>
             </div>
