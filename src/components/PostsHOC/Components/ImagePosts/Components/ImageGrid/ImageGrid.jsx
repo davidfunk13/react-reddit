@@ -51,10 +51,12 @@ export default class ImageGrid extends Component {
         </Dialog>
         <GridList className={classes.gridList} cols={3}>
           {posts.map((tile, index) => {
-            console.log(tile)
             if (tile.data.url.includes('gifv')) {
-              return <GridListTile onClick={() => this.handleOpen(tile.data.url, tile.data.title)} key={tile.data.url} cols={tile.cols}>
-                <img onError={(e) => { e.target.onerror = null; e.target.src = thumb }} src={tile.data.thumbnail} alt="" />
+              let url = tile.data.url.replace('gifv', 'mp4')
+              return <GridListTile onClick={() => this.handleOpen(url, tile.data.title)} key={tile.data.url} cols={tile.cols}>
+                <video>
+                  <source src={url} type="video/mp4"></source>
+                </video>
               </GridListTile>
             } else {
               return <GridListTile onClick={() => this.handleOpen(tile.data.url, tile.data.title)} key={tile.data.url} cols={tile.cols}>

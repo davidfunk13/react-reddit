@@ -92,7 +92,8 @@ const styles = (theme) => ({
         height: '90vh',
     },
     modalImg: {
-        maxWidth: '100%'
+        maxWidth: '100%',
+        maxHeight: '75vh'
     },
     dialog: {
         margin: '0',
