@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GridList, GridListTile, Dialog, Typography } from '@material-ui/core';
+import { GridList, GridListTile, Dialog, Paper } from '@material-ui/core';
 import thumb from '../../../../assets/img/thumb.png'
 import SelectedImage from '../SelectedImage/SelectedImage';
 
@@ -21,7 +21,6 @@ export default class ImageGrid extends Component {
       }
     });
   };
-
 
   handleClose = () => {
     this.setState({ isOpen: false });
@@ -45,22 +44,28 @@ export default class ImageGrid extends Component {
         <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>
           <SelectedImage imageData={this.state.current} toggleModal={this.toggleModal} {...this.props} />
         </Dialog>
+        <Paper elevation={4}>
         <GridList className={classes.gridList} cols={3}>
           {posts.map((tile, index) => {
             if (tile.data.url.includes('gifv')) {
               let url = tile.data.url.replace('gifv', 'mp4')
-              return <GridListTile onClick={() => this.handleOpen(url, tile.data.title)} key={tile.data.url} cols={tile.cols}>
-                <video onError={(e) => { e.target.onerror = null; e.target.src = thumb }} autoPlay loop>
-                  <source src={url} type="video/mp4"></source>
-                </video>
-              </GridListTile>
+              return (
+                <GridListTile  style={{padding:'0'}} onClick={() => this.handleOpen(url, tile.data.title)} key={tile.data.url} cols={tile.cols}>
+                  <video onError={(e) => { e.target.onerror = null; e.target.src = thumb }} autoPlay loop>
+                    <source src={url} type="video/mp4"></source>
+                  </video>
+                </GridListTile>
+              )
             } else {
-              return <GridListTile onClick={() => this.handleOpen(tile.data.url, tile.data.title)} key={tile.data.url} cols={tile.cols}>
-                <img onError={(e) => { e.target.onerror = null; e.target.src = thumb }} src={tile.data.url} alt="" />
-              </GridListTile>
+              return (
+                <GridListTile style={{padding: '0'}} onClick={() => this.handleOpen(tile.data.url, tile.data.title)} key={tile.data.url} cols={tile.cols}>
+                  <img onError={(e) => { e.target.onerror = null; e.target.src = thumb }} src={tile.data.url} alt="" />
+                </GridListTile>
+              )
             }
           })}
         </GridList>
+        </Paper>
       </div>
     );
   }

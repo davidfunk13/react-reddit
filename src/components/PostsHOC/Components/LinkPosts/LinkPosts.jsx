@@ -28,7 +28,7 @@ export default class LinkPost extends Component {
                                     Author: {post.data.author}
                                 </Typography>
                                 <Typography className={classes.postText} noWrap>
-                                    Title: "{post.data.Title}"
+                                    Title: "{post.data.title}"
                                                  </Typography>
                                 <Typography className={classes.postText} noWrap>
                                     URL: "{post.data.url}"
