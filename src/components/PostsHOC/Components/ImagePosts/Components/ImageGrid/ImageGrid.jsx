@@ -54,7 +54,7 @@ export default class ImageGrid extends Component {
             if (tile.data.url.includes('gifv')) {
               let url = tile.data.url.replace('gifv', 'mp4')
               return <GridListTile onClick={() => this.handleOpen(url, tile.data.title)} key={tile.data.url} cols={tile.cols}>
-                <video>
+                <video autoPlay loop>
                   <source src={url} type="video/mp4"></source>
                 </video>
               </GridListTile>

@@ -14,7 +14,7 @@ export default class SelectedImage extends Component {
         return (
             <div className={classes.modal}>
                 {imageData.img.includes('mp4') ?
-                    <video autoPlay className={classes.modalImg}>
+                    <video autoPlay loop className={classes.modalImg}>
                         <source src={imageData.img} type="video/mp4"></source>
                     </video>
                     :
