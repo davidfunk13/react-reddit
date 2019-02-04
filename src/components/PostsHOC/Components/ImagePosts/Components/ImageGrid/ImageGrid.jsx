@@ -11,9 +11,6 @@ export default class ImageGrid extends Component {
       title: ''
     }
   }
-  componentDidMount() {
-    console.log(this.props)
-  }
 
   handleOpen = (img, title) => {
     this.setState({
@@ -45,7 +42,6 @@ export default class ImageGrid extends Component {
     const posts = this.props.tileData
     return (
       <div>
-        <button onClick={() => this.toggleModal()}>Toggle this modal</button>
         <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>
           <SelectedImage imageData={this.state.current} toggleModal={this.toggleModal} {...this.props} />
         </Dialog>
@@ -54,7 +50,7 @@ export default class ImageGrid extends Component {
             if (tile.data.url.includes('gifv')) {
               let url = tile.data.url.replace('gifv', 'mp4')
               return <GridListTile onClick={() => this.handleOpen(url, tile.data.title)} key={tile.data.url} cols={tile.cols}>
-                <video autoPlay loop>
+                <video onError={(e) => { e.target.onerror = null; e.target.src = thumb }} autoPlay loop>
                   <source src={url} type="video/mp4"></source>
                 </video>
               </GridListTile>

@@ -64,8 +64,6 @@ const styles = (theme) => ({
         marginBottom: '2rem',
     },
     posts: {
-        marginTop: '2rem',
-        padding: '2rem',
         height: '70vh',
         overflow: 'auto',
     },

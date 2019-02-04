@@ -20,13 +20,13 @@ export default class PostsHOC extends Component {
             <Grid justify="center" container>
                 <Grid item>
                     <Tabs value={value} onChange={this.handleChange}>
-                        <Tab label="All Posts" />
+                        <Tab label="All" />
                         <Tab label="Comments" />
                         <Tab label="Links" />
                         <Tab label="Images" />
                     </Tabs>
                 </Grid>
-                <Grid justify="center" className={classes.posts} container>
+                <Grid className={classes.posts} justify="center" container>
                     <Grid item>
                         {value === 0 && <AllPosts {...this.props} />}
                         {value === 1 && <CommentPosts {...this.props} />}

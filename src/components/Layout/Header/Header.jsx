@@ -36,11 +36,15 @@ export default class Header extends Component {
                     </div>
                     <Divider />
                     <List>
-                        <ListItem button component={Link} to={'/profile'} >
+                        <ListItem button onClick={() => toggle()} component={Link} to={'/'} >
+                            <SaveIcon />
+                            <ListItemText primary={'Home'} />
+                        </ListItem>
+                        <ListItem button onClick={() => toggle()} component={Link} to={'/profile'} >
                             <ProfileIcon />
                             <ListItemText primary={'Profile'} />
                         </ListItem>
-                        <ListItem button component={Link} to={'/saved'} >
+                        <ListItem button onClick={() => toggle()} component={Link} to={'/saved'} >
                             <SaveIcon />
                             <ListItemText primary={'Saved'} />
                         </ListItem>
