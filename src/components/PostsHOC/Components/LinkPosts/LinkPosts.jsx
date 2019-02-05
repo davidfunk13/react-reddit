@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Paper, Typography, Grid, Card, CardMedia } from '@material-ui/core';
 import thumb from '../../assets/img/thumb.png'
+import { Link } from '../Posts';
 export default class LinkPost extends Component {
     componentDidMount() {
 
@@ -8,34 +9,9 @@ export default class LinkPost extends Component {
 
     render() {
         const posts = this.props.posts.filter(post => post.kind === 't3');
-        const { classes } = this.props.store
         return (
             posts.map(post => {
-                // const extensions = ['gif', 'jpg', 'jpeg'];
-                return (
-                    <Paper key={post.data.id} className={classes.paper} elevation={4}>
-                        <Grid container direction="row" alignItems="center" alignContent="space-around" justify={"flex-start"} spacing={0}>
-                            <Grid item xs={3}>
-                                <Card className={classes.postCard} >
-                                    <CardMedia className={classes.postThumb} image={thumb}>
-
-                                    </CardMedia>
-                                </Card>
-                            </Grid>
-                            <Grid item xs={9} >
-                                <Typography gutterBottom>
-                                    Author: {post.data.author}
-                                </Typography>
-                                <Typography className={classes.postText} noWrap>
-                                    Title: "{post.data.title}"
-                                                 </Typography>
-                                <Typography className={classes.postText} noWrap>
-                                    URL: "{post.data.url}"
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </Paper>
-                )
+                return <Link key={post.data.id} post={post} {...this.props} />
             })
         )
     }
