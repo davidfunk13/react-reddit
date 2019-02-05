@@ -4,7 +4,6 @@ import { Tabs, Tab, Typography, Grid, Paper } from '@material-ui/core';
 
 
 export default class PostsHOC extends Component {
-
     state = {
         value: 0,
     }
@@ -21,9 +20,9 @@ export default class PostsHOC extends Component {
                 <Grid item>
                     <Tabs value={value} onChange={this.handleChange}>
                         <Tab label="All" />
-                        <Tab label="Comments" />
+                        {/* <Tab label="Comments" />
                         <Tab label="Links" />
-                        <Tab label="Images" />
+                        <Tab label="Images" /> */}
                     </Tabs>
                 </Grid>
                 <Grid className={classes.posts} justify="center" container>
