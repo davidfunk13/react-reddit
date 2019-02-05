@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Paper, Typography, Grid, Card, CardMedia } from '@material-ui/core';
 import thumb from '../../assets/img/thumb.png'
 export default class Link extends Component {
-    componentDidMount() {
-        console.log(this.props.post)
-    }
     render() {
         const { classes } = this.props.store;
         const {post} = this.props;

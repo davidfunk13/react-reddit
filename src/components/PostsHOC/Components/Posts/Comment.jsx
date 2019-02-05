@@ -10,9 +10,7 @@ export default class Comment extends Component {
             <Grid container direction="row" alignItems="center" alignContent="space-around" justify={"flex-start"} spacing={0}>
                 <Grid item xs={3}>
                     <Card className={classes.postCard} >
-                        <CardMedia className={classes.postThumb} image={thumb}>
-
-                        </CardMedia>
+                        <CardMedia className={classes.postThumb} image={thumb}/>
                     </Card>
                 </Grid>
                 <Grid  item xs={9} >
