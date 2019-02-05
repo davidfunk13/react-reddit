@@ -12,7 +12,6 @@ export default class LinkPost extends Component {
         return (
             posts.map(post => {
                 const extensions = ['gif', 'jpg', 'jpeg'];
-      
                 return (
                     <Paper key={post.data.id} className={classes.paper} elevation={4}>
                         <Grid container direction="row" alignItems="center" alignContent="space-around" justify={"flex-start"} spacing={0}>

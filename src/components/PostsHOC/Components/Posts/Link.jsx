@@ -3,7 +3,7 @@ import { Paper, Typography, Grid, Avatar, Card, CardMedia } from '@material-ui/c
 import thumb from '../../assets/img/thumb.png'
 export default class Link extends Component {
     componentDidMount() {
-        console.log(this.props)
+        console.log(this.props.post)
     }
     render() {
         const { classes, classNames } = this.props.store;
@@ -13,17 +13,15 @@ export default class Link extends Component {
             <Grid container direction="row" alignItems="center" alignContent="space-around" justify={"flex-start"} spacing={0}>
                 <Grid item xs={3}>
                     <Card className={classes.postCard} >
-                        <CardMedia className={classes.postThumb} image={thumb}>
-
-                        </CardMedia>
+                        <CardMedia className={classes.postThumb} image={post.data.thumbnail === 'default' ? thumb : post.data.thumbnail}/>
                     </Card>
                 </Grid>
                 <Grid  item xs={9} >
-                    <Typography gutterBottom>
-                       Author: {post.data.author}
+                    <Typography gutterBottom noWrap>
+                       Title: {post.data.title}
                     </Typography>
                     <Typography className={classes.postText} noWrap>
-                        Comment: "{post.data.body}"
+                        URL: {post.data.url}
                     </Typography>
                 </Grid>
             </Grid>
