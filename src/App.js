@@ -43,7 +43,6 @@ class App extends Component {
     const toggle = this.toggleDrawer;
     const auth = Auth;
     let store = { open, user, classes, classNames, logout, toggle, auth };
-    console.log(process.env.REACT_APP_TEST)
     return (
       <Router history={history}>
         <div className="App">

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AllPosts, LinkPosts, CommentPosts, ImagePosts } from './Components/index';
-import { Tabs, Tab, Typography, Grid, Paper } from '@material-ui/core';
+import { Tabs, Tab, Grid } from '@material-ui/core';
 
 
 export default class PostsHOC extends Component {

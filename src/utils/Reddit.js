@@ -18,22 +18,23 @@ export const Reddit = {
     sortPosts: (post, props) => {
         switch (post.kind) {
             case 't1': return (
-                <Comment post={post} {...props} />
+                <Comment key={post.data.id} post={post} {...props} />
             )
             case 't3':
                 if (post.data.post_hint === 'image') {
                     return (
-                        <Image post={post} {...props} />
+                        <Image key={post.data.id} post={post} {...props} />
                     )
                 } else if (post.data.post_hint === 'link') {
                     return (
-                        <Link post={post} {...props} />
+                        <Link key={post.data.id} post={post} {...props} />
                     )
                 } else if (post.data.post_hint === 'rich:video' || 'hosted:video') {
                     return (
-                        <Video post={post} {...props} />
+                        <Video key={post.data.id} post={post} {...props} />
                     )
                 }
+                break;
             default: return 'something went wrong'
         }
     }

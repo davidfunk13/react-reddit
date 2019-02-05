@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Paper, Typography, Grid, Avatar, Card, CardMedia } from '@material-ui/core';
+import { Paper, Typography, Grid, Card, CardMedia } from '@material-ui/core';
 import thumb from '../../assets/img/thumb.png'
 export default class CommentPosts extends Component {
     componentDidMount() {
@@ -9,7 +9,7 @@ export default class CommentPosts extends Component {
 
     render() {
         const posts = this.props.posts.filter(post => post.kind === 't1')
-        const { classes, classNames } = this.props.store
+        const { classes } = this.props.store
         return (
                 posts.map(post => {
                     console.log(post)

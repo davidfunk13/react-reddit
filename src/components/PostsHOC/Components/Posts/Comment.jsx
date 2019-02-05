@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Paper, Typography, Grid, Avatar, Card, CardMedia } from '@material-ui/core';
+import { Paper, Typography, Grid, Card, CardMedia } from '@material-ui/core';
 import thumb from '../../assets/img/thumb.png'
 export default class Comment extends Component {
     render() {
-        const { classes, classNames } = this.props.store;
+        const { classes } = this.props.store;
         const {post} = this.props;
         return (
             <Paper key={post.data.id} className={classes.paper} elevation={4}>
