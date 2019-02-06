@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import { Reddit } from '../../utils/Reddit';
+import thumb from '../PostsHOC/assets/img/thumb.png';
 
 export default class Profile extends Component {
     state = {
@@ -21,9 +22,10 @@ export default class Profile extends Component {
 
     render() {
         const { open, classes, classNames } = this.props.store;
+        const {data, isFetching} = this.state;
         return (
             <div>
-                {this.state.isFetching ?
+                {isFetching ?
                     <main className={classNames(classes.content, { [classes.contentShift]: open })} >
                         <Typography>
                             Fetching...
@@ -31,9 +33,11 @@ export default class Profile extends Component {
                     </main>
                     :
                     <main className={classNames(classes.content, { [classes.contentShift]: open })} >
+                        <img onError={(e) => { e.target.onerror = null; e.target.src = thumb }} src={data.data.icon_img} alt="" />
                         <Typography>
-                            {this.state.data.data.name}
+                            {data.data.name}
                         </Typography>
+                        
                         <Link to='/'>Back</Link>
                     </main>
                 }
