@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { Comment, Link, Image, Video } from '../components/PostsHOC/Components/Posts';
+
 export const Reddit = {
     masterUser: (token) => {
         return axios.get('https://oauth.reddit.com/api/v1/me', { headers: { Authorization: 'Bearer ' + token } })
