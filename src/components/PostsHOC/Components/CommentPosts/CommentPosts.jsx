@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Comment } from '../Posts/index';
+import { Comment } from '../AllPosts/Components/Posts/index';
 
 export default class CommentPosts extends Component {
     render() {

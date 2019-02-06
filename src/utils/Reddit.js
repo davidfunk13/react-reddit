@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import { Comment, Link, Image, Video } from '../components/PostsHOC/Components/Posts';
+import { Comment, Link, Image, Video } from '../components/PostsHOC/Components/AllPosts/Components/Posts/index';
 
 export const Reddit = {
     masterUser: (token) => {
