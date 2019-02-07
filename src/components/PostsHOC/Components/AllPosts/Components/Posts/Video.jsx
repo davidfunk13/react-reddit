@@ -11,7 +11,7 @@ export default class Video extends Component {
             <Grid container direction="row" alignItems="center" alignContent="space-around" justify={"flex-start"} spacing={0}>
                 <Grid item xs={3}>
                     <Card className={classes.postCard} >
-                        <CardMedia className={classes.postThumb} image={thumb}/>
+                        <CardMedia className={classes.postThumb} image={post.data.thumbnail || thumb}/>
                     </Card>
                 </Grid>
                 <Grid item xs={9} >
@@ -19,7 +19,8 @@ export default class Video extends Component {
                        Author: {post.data.author}
                     </Typography>
                     <Typography className={classes.postText} noWrap>
-                        URL: "{post.data.url}"
+                    {/* //when you include the modal here, have the link open in it. */}
+                         "{post.data.title}"
                     </Typography>
                 </Grid>
             </Grid>

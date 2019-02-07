@@ -17,27 +17,51 @@ export const Reddit = {
             });
     },
     sortPosts: (post, props) => {
-        switch (post.kind) {
-            case 't1': return (
-                <Comment key={post.data.id} post={post} {...props} />
-            )
+        console.log(post.data.domain)
+        switch(post.kind){
+            case 't1':
+            return;
             case 't3':
-                if (post.data.post_hint === 'image') {
-                    return (
-                        <Image key={post.data.id} post={post} {...props} />
-                    )
-                } else if (post.data.post_hint === 'link') {
-                    return (
-                        <Link key={post.data.id} post={post} {...props} />
-                    )
-                } else if (post.data.post_hint === 'rich:video' || 'hosted:video') {
-                    return (
-                        <Video key={post.data.id} post={post} {...props} />
-                    )
+            if (post.data.is_reddit_media_domain){
+                //is
+                return
+            } else{
+                //isnot
+                if(post.data.is_self){
+                    return 
+                } else if (post.data.post_hint){
+                    return console.log(post.data.)
+                    
+                } else{
+                    return console.log({post: post.data, domain: post.data.domain, title: post.data.title, url: post.data.url, } )
                 }
-                break;
+            }
+            //if has post hint
+            // if (post.data.post_hint !== undefined){
+            //     //edge case for if it has a hint, but its also a self post.
+            //     if (post.data.post_hint === 'self'){
+            //         //return as you would a self post
+            //         return 
+            //     } else{
+            //         //do something with post hint depending on type
+            //         return
+            //     }
+            // } else {
+            // //has no post hint.
+            // //is it a self post?
+            //     if (post.data.is_self){
+            //         return
+            //     } else {
+            //         //what is it?
+            //         if (post.data.domain === 'i.redd.it'){
+            //             console.log(post)
+            //         } else{
+
+            //             return console.log(post.data.domain)
+            //         }
+            //     }
+            // }
             default: return 'something went wrong'
         }
     }
-
 }

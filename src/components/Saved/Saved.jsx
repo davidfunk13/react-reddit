@@ -17,7 +17,12 @@ export default class Saved extends Component {
                 Reddit.fetchSaved(user.data.name, token).then(response => {
                     this.setState({
                         isFetching: false,
-                        saved: response.data.data.children
+                        saved: response.data.data.children,
+                        requestInfo: {
+                            before: response.data.data.before,
+                            after: response.data.data.after,
+                            dist: response.data.data.dist,
+                            }
                     });
                 });
             })
@@ -26,7 +31,12 @@ export default class Saved extends Component {
             Reddit.fetchSaved(this.props.store.user.data.name, token).then(response => {
                 this.setState({
                     isFetching: false,
-                    saved: response.data.data.children
+                    saved: response.data.data.children,
+                    requestInfo: {
+                        before: response.data.data.before,
+                        after: response.data.data.after,
+                        dist: response.data.data.dist,
+                        }
                 })
             })
         }
@@ -42,7 +52,7 @@ export default class Saved extends Component {
                             Fetching...
                          </Typography>
                         :
-                        <PostsHOC posts={this.state.saved} {...this.props} />
+                        <PostsHOC requestInfo={this.state.requestInfo} posts={this.state.saved} {...this.props} />
                     }
                 </main>
                 <Link to="/">Back</Link>

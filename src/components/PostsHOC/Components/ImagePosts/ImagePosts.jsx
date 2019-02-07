@@ -11,35 +11,27 @@ export default class ImagePosts extends Component {
     return columns;
   }
   getPostsWithColumns = (posts) => {
-
     const postsWithColumns = posts.reduce((accum, post) => {
-
       const lastIndex = accum.length - 1;
-
       if (accum[lastIndex] && this.totalColumns(accum[lastIndex]) < 3) {
-
         const currentTotal = this.totalColumns(accum[lastIndex]);
-
         const postWithCols = {
           ...post,
           cols: currentTotal === 2 ? 1 : this.randomNumber(2)
         };
-
         accum[lastIndex] = [...accum[lastIndex], postWithCols];
-
         return accum;
       }
       const postWithCols = {
         ...post,
         cols: this.randomNumber(3)
       }
-
       return [...accum, [postWithCols]];
     }, []);
     return postsWithColumns.reduce((accum, group) => [...accum, ...group], []);
   };
   render() {
-    const postHints = ['image', 'rich:video', 'hosted:video'];
+    const postHints = ['image', 'rich:video', 'hosted:video', 'link'];
     const posts = this.props.posts.filter(post => post.data.post_hint && postHints.some(hint => post.data.post_hint.includes(hint)));
     return <ImageGrid tileData={this.getPostsWithColumns(posts)} {...this.props} />
   }

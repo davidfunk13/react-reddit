@@ -19,7 +19,6 @@ export default class AllPosts extends Component {
         return (
             <div>
                 {posts.map((post, index) => {
-                    // console.log(post, index + 1)
                     return Reddit.sortPosts(post, this.props);
                 })}
             </div>
