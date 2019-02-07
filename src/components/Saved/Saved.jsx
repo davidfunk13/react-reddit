@@ -11,17 +11,17 @@ export default class Saved extends Component {
     };
 
     componentDidMount() {
-        if (this.props.store.user === null && sessionStorage.getItem('t') ) {
-             let token = sessionStorage.getItem('t');
-             Reddit.masterUser(token).then(user => {
-                 Reddit.fetchSaved(user.data.name, token).then(response => {
-                     this.setState({
-                         isFetching: false,
-                         saved: response.data.data.children
-                     });
-                 });
-             })   
-        } else if (this.props.store.user !== null && sessionStorage.getItem('t') ){
+        if (this.props.store.user === null && sessionStorage.getItem('t')) {
+            let token = sessionStorage.getItem('t');
+            Reddit.masterUser(token).then(user => {
+                Reddit.fetchSaved(user.data.name, token).then(response => {
+                    this.setState({
+                        isFetching: false,
+                        saved: response.data.data.children
+                    });
+                });
+            })
+        } else if (this.props.store.user !== null && sessionStorage.getItem('t')) {
             let token = sessionStorage.getItem('t');
             Reddit.fetchSaved(this.props.store.user.data.name, token).then(response => {
                 this.setState({
@@ -40,8 +40,6 @@ export default class Saved extends Component {
                     {this.state.isFetching ?
                         <Typography>
                             Fetching...
-
-                            If posts do not fetch, please use
                          </Typography>
                         :
                         <PostsHOC posts={this.state.saved} {...this.props} />
