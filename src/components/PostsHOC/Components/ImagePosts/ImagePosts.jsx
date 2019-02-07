@@ -39,7 +39,8 @@ export default class ImagePosts extends Component {
     return postsWithColumns.reduce((accum, group) => [...accum, ...group], []);
   };
   render() {
-    const posts = this.props.posts.filter(post => post.kind === 't3' && (post.data.url.includes('gif') || post.data.url.includes('jpg') || post.data.url.includes('jpeg') || post.data.url.includes('png') || post.data.url.includes('gifv')))
+    const posts = this.props.posts.filter(post => post.kind === 't3' &&( post.data.post_hint === 'image' || 'hosted:video'|| 'rich:video'))
+    console.log(posts)
     return <ImageGrid tileData={this.getPostsWithColumns(posts)} {...this.props} />
   }
 }
