@@ -17,51 +17,24 @@ export const Reddit = {
             });
     },
     sortPosts: (post, props) => {
-        console.log(post.data.domain)
-        switch(post.kind){
-            case 't1':
-            return;
-            case 't3':
-            if (post.data.is_reddit_media_domain){
-                //is
-                return
-            } else{
-                //isnot
-                if(post.data.is_self){
-                    return 
-                } else if (post.data.post_hint){
-                    return console.log(post.data.)
-                    
-                } else{
-                    return console.log({post: post.data, domain: post.data.domain, title: post.data.title, url: post.data.url, } )
-                }
-            }
-            //if has post hint
-            // if (post.data.post_hint !== undefined){
-            //     //edge case for if it has a hint, but its also a self post.
-            //     if (post.data.post_hint === 'self'){
-            //         //return as you would a self post
-            //         return 
-            //     } else{
-            //         //do something with post hint depending on type
-            //         return
-            //     }
-            // } else {
-            // //has no post hint.
-            // //is it a self post?
-            //     if (post.data.is_self){
-            //         return
-            //     } else {
-            //         //what is it?
-            //         if (post.data.domain === 'i.redd.it'){
-            //             console.log(post)
-            //         } else{
-
-            //             return console.log(post.data.domain)
-            //         }
-            //     }
-            // }
-            default: return 'something went wrong'
+        let extensions = ['gifv', 'gif', 'jpg', 'jpeg', 'png'];
+        let fileExtension;
+        if (("url" in post.data)) {
+            fileExtension = post.data.url.lastIndexOf('.');
+            fileExtension = post.data.url.substr(fileExtension + 1);
+            console.log(post)
+            console.log(fileExtension)
+            let isImage = false;
+            extensions.map(ext =>  {if (ext === fileExtension){
+console.log(ext, fileExtension);
+isImage = !isImage
+            }})
+            // split = post.data.url.split('.');
+            // split = split[split.length - 1];
+            console.log(`is image: ${isImage}`)
+        } else {
+            //catch domains with no ext for gifs
+            console.log('not image');
         }
     }
 }
