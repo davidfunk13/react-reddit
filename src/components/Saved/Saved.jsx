@@ -22,7 +22,7 @@ export default class Saved extends Component {
                             before: response.data.data.before,
                             after: response.data.data.after,
                             dist: response.data.data.dist,
-                            }
+                        }
                     });
                 });
             })
@@ -36,7 +36,7 @@ export default class Saved extends Component {
                         before: response.data.data.before,
                         after: response.data.data.after,
                         dist: response.data.data.dist,
-                        }
+                    }
                 })
             })
         }

@@ -54,5 +54,48 @@ export const Reddit = {
             }
         }
         console.log(post);
+    },
+    pruneLinks: (post, props) =>{
+
+        let extensions = ['gifv', 'gif', 'jpg', 'jpeg', 'png'];
+        let fileExtension;
+        let post1 = {
+            domain: post.data.domain,
+            url: post.data.url,
+            post_hint: post.post_hint,
+            body: post.data.body
+        };
+        if (post1.body) {
+            return <Comment key={post.data.id} post={post} {...props} />
+        }
+        if (post1.domain.includes('gfycat')) {
+            return <Video key={post.data.id} post={post} {...props} />;
+        }
+        if (post1.domain.includes('youtube')) {
+            return <Video key={post.data.id} post={post} {...props} />;
+        }
+        if (post1.domain.includes('imgur')) {
+            if (post1.url.includes('gifv')) {
+                return <Video key={post.data.id} post={post} {...props} />;
+            } else {
+                return <Image key={post.data.id} post={post} {...props} />
+            }
+        }
+        if (("url" in post.data)) {
+            let isImage = false;
+            fileExtension = post.data.url.lastIndexOf('.');
+            fileExtension = post.data.url.substr(fileExtension + 1);
+            extensions.map(ext => {
+                if (ext === fileExtension && isImage !== true) {
+                    return isImage = true;
+                } 
+            })
+            if (isImage === true){
+                return <Image key={post.data.id} post={post} {...props} />
+            } else {
+                return <Link key={post.data.id} post={post} {...props} />
+            }
+        }
+        console.log(post);
     }
 }
