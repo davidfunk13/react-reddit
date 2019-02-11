@@ -39,13 +39,19 @@ export const Reddit = {
             }
         }
         if (("url" in post.data)) {
+            let isImage = false;
             fileExtension = post.data.url.lastIndexOf('.');
             fileExtension = post.data.url.substr(fileExtension + 1);
-            return extensions.map(ext => {
-                if (ext === fileExtension) {
-                    return <Image key={post.data.id} post={post} {...props} />
-                }
+            extensions.map(ext => {
+                if (ext === fileExtension && isImage !== true) {
+                    return isImage = true;
+                } 
             })
+            if (isImage === true){
+                return <Image key={post.data.id} post={post} {...props} />
+            } else {
+                return <Link key={post.data.id} post={post} {...props} />
+            }
         }
         console.log(post);
     }

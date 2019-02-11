@@ -10,7 +10,7 @@ export default class Link extends Component {
             <Grid container direction="row" alignItems="center" alignContent="space-around" justify={"flex-start"} spacing={0}>
                 <Grid item xs={3}>
                     <Card className={classes.postCard} >
-                        <CardMedia className={classes.postThumb} image={post.data.thumbnail === 'default' ? thumb : post.data.thumbnail}/>
+                        <CardMedia className={classes.postThumb} image={post.data.thumbnail === 'default' || 'self' ? thumb : post.data.thumbnail}/>
                     </Card>
                 </Grid>
                 <Grid  item xs={9} >
