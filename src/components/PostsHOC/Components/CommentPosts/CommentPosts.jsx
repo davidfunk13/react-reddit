@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Comment } from '../AllPosts/Components/Posts/index';
+import {Grow} from '@material-ui/core';
 
 export default class CommentPosts extends Component {
     render() {
@@ -7,7 +8,12 @@ export default class CommentPosts extends Component {
         console.log(posts)
         return (
             posts.map(post => {
-                return <Comment key={post.data.id} post={post} {...this.props} />
+                return (
+                    <Grow in={true} timeout={500}>
+
+                <Comment key={post.data.id} post={post} {...this.props} />
+                    </Grow>
+                )
             })
         )
     }
