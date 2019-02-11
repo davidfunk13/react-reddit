@@ -12,7 +12,7 @@ export default class Image extends Component {
             <Grid container direction="row" alignItems="center" alignContent="space-around" justify={"flex-start"} spacing={0}>
                 <Grid item xs={3}>
                     <Card className={classes.postCard} >
-                        <CardMedia className={classes.postThumb} image={post.data.thumbnail}/>
+                        <CardMedia className={classes.postThumb} image={post.data.url}/>
                     </Card>
                 </Grid>
                 <Grid  item xs={9} >

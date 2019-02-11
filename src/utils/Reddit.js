@@ -22,16 +22,12 @@ export const Reddit = {
         if (("url" in post.data)) {
             fileExtension = post.data.url.lastIndexOf('.');
             fileExtension = post.data.url.substr(fileExtension + 1);
-            console.log(post)
-            console.log(fileExtension)
-            let isImage = false;
-            extensions.map(ext =>  {if (ext === fileExtension){
-console.log(ext, fileExtension);
-isImage = !isImage
-            }})
-            // split = post.data.url.split('.');
-            // split = split[split.length - 1];
-            console.log(`is image: ${isImage}`)
+         return extensions.map(ext => {
+                if (ext === fileExtension) {
+                    console.log(post)
+                    return <Image post={post} {...props} />
+                }
+            })
         } else {
             //catch domains with no ext for gifs
             console.log('not image');
