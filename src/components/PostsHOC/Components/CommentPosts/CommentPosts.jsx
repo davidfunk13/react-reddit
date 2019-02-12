@@ -9,10 +9,7 @@ export default class CommentPosts extends Component {
         return (
             posts.map(post => {
                 return (
-                    <Grow in={true} timeout={500}>
-
                 <Comment key={post.data.id} post={post} {...this.props} />
-                    </Grow>
                 )
             })
         )

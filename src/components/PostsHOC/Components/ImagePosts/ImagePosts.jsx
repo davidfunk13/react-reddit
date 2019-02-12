@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ImageGrid from './Components/ImageGrid/ImageGrid';
+import {Reddit } from '../../../../utils/Reddit.js'
 
 export default class ImagePosts extends Component {
   randomNumber = (ceiling) => {
@@ -32,7 +33,9 @@ export default class ImagePosts extends Component {
   };
   render() {
     const postHints = ['image', 'rich:video', 'hosted:video', 'link'];
-    const posts = this.props.posts.filter(post => post.data.post_hint && postHints.some(hint => post.data.post_hint.includes(hint)));
-    return <ImageGrid tileData={this.getPostsWithColumns(posts)} {...this.props} />
+    const posts = this.props.posts.filter(post => post.kind === 't3');
+    let mediaOnly = Reddit.gridSort(posts)
+
+    return <ImageGrid tileData={this.getPostsWithColumns(mediaOnly)} {...this.props} />
   }
 }

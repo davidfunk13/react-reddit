@@ -39,9 +39,7 @@ export default class ImageGrid extends Component {
   render() {
     const { classes } = this.props.store;
     const posts = this.props.tileData
-    posts.forEach((element, index) => {
-      console.log(index +1 , element)
-    });
+    console.log(posts)
     return (
       <div>
         <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>
@@ -49,7 +47,8 @@ export default class ImageGrid extends Component {
         </Dialog>
         <Paper elevation={4}>
         <GridList className={classes.gridList} cols={3}>
-          {posts.map((tile, index) => {
+        <div>ass</div>
+          {/* {posts.map((tile, index) => {
             if (tile.data.url.includes('gifv')) {
               let url = tile.data.url.replace('gifv', 'mp4')
               return (
@@ -60,14 +59,14 @@ export default class ImageGrid extends Component {
                 </GridListTile>
               )
             } 
-            // else {
-            //   return (
-            //     <GridListTile style={{padding: '0'}} onClick={() => this.handleOpen(tile.data.url, tile.data.title)} key={tile.data.url} cols={tile.cols}>
-            //       <img onError={(e) => { e.target.onerror = null; e.target.src = thumb }} src={tile.data.url} alt="" />
-            //     </GridListTile>
-            //   )
-            // }
-          })}
+            else {
+              return (
+                <GridListTile style={{padding: '0'}} onClick={() => this.handleOpen(tile.data.url, tile.data.title)} key={tile.data.url} cols={tile.cols}>
+                  <img onError={(e) => { e.target.onerror = null; e.target.src = thumb }} src={tile.data.url} alt="" />
+                </GridListTile>
+              )
+            }
+          })} */}
         </GridList>
         </Paper>
       </div>
