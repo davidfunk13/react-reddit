@@ -6,6 +6,14 @@ import SelectedImage from '../SelectedImage/SelectedImage';
 export default class ImageGrid extends Component {
   state = {
     isOpen: false,
+    posts: {
+      all: this.props.tileData,
+      gfycat: this.props.gfycat,
+      images: this.props.images,
+      redditVideo: this.props.redditVideo,
+      youtube: this.props.youtube,
+      gifv: this.props.gifv
+    },
     current: {
       img: '',
       title: ''
@@ -39,7 +47,7 @@ export default class ImageGrid extends Component {
   render() {
     const { classes } = this.props.store;
     const posts = this.props.tileData
-    console.log(posts)
+    console.log(this.state)
     return (
       <div>
         <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>
@@ -47,7 +55,9 @@ export default class ImageGrid extends Component {
         </Dialog>
         <Paper elevation={4}>
         <GridList className={classes.gridList} cols={3}>
-        <div>ass</div>
+        {this.state.posts.all.map(post=>{
+          console.log(post)
+        })}
           {/* {posts.map((tile, index) => {
             if (tile.data.url.includes('gifv')) {
               let url = tile.data.url.replace('gifv', 'mp4')

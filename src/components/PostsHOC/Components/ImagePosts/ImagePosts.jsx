@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ImageGrid from './Components/ImageGrid/ImageGrid';
-import {Reddit } from '../../../../utils/Reddit.js'
+import { Reddit } from '../../../../utils/Reddit.js'
 
 export default class ImagePosts extends Component {
   randomNumber = (ceiling) => {
@@ -31,11 +31,30 @@ export default class ImagePosts extends Component {
     }, []);
     return postsWithColumns.reduce((accum, group) => [...accum, ...group], []);
   };
-  render() {
-    const postHints = ['image', 'rich:video', 'hosted:video', 'link'];
-    const posts = this.props.posts.filter(post => post.kind === 't3');
-    let mediaOnly = Reddit.gridSort(posts)
+  shuffle = (array) => {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+  }
 
-    return <ImageGrid tileData={this.getPostsWithColumns(mediaOnly)} {...this.props} />
+  render() {
+    const posts = this.props.posts.filter(post => post.kind === 't3');
+    let mediaOnly = Reddit.gridSort(posts);
+    let randomizeMedia = this.shuffle([...mediaOnly.gfycat, ...mediaOnly.images, ...mediaOnly.gifv, ...mediaOnly.redditVideo, ...mediaOnly.youtube]);
+    return <ImageGrid
+      gfycat={this.getPostsWithColumns(mediaOnly.gfycat)}
+      images={this.getPostsWithColumns(mediaOnly.images)}
+      gifv={this.getPostsWithColumns(mediaOnly.gifv)}
+      redditVideo={this.getPostsWithColumns(mediaOnly.redditVideo)}
+      youtube={this.getPostsWithColumns(mediaOnly.youtube)}
+      tileData={this.getPostsWithColumns(randomizeMedia)}
+      {...this.props}
+    />
   }
 }

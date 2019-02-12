@@ -59,6 +59,7 @@ export const Reddit = {
         let images = [];
         let gfycat = [];
         let redditVideo = [];
+        let youtube = [];
         let gifv = [];
         let uncaught = [];
         let extensions = ['gifv', 'gif', 'jpg', 'jpeg', 'png'];
@@ -98,9 +99,9 @@ export const Reddit = {
             if (post.data.post_hint && post.data.post_hint === 'rich:video') {
                 if (post.data.domain === 'youtube.com' || post.data.domain === 'youtu.be') {
                     caught = !caught;
-                    uncaught.push(post);
+                    youtube.push(post);
                     return
-                } 
+                }
             }
 
             if (post.data.post_hint && post.data.post_hint === 'hosted:video') {
@@ -119,8 +120,15 @@ export const Reddit = {
                 return;
             }
         })
-         let media = [...gfycat, ...gifv, ...redditVideo, ...images]
-         return media;
+        let media = {
+            gfycat: gfycat,
+            redditVideo: redditVideo,
+            youtube: youtube,
+            images: images,
+            gifv: gifv
+
+        }
+        return media;
     }
 
 }
