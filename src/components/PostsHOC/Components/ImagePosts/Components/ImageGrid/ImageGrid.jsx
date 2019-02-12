@@ -57,6 +57,13 @@ export default class ImageGrid extends Component {
         <GridList className={classes.gridList} cols={3}>
         {this.state.posts.all.map(post=>{
           console.log(post)
+          if(post.data.domain === 'gfycat.com'){
+            let {oembed} = post.data.media;
+            let parsedHtml;
+            parsedHtml = oembed.html.replace('&lt;', '<').replace('&gt;','>').replace('&amp;','&');
+            console.log(parsedHtml)
+            console.log(oembed)
+          }
         })}
           {/* {posts.map((tile, index) => {
             if (tile.data.url.includes('gifv')) {

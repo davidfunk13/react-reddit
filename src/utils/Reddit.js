@@ -10,7 +10,7 @@ export const Reddit = {
             });
     },
     fetchSaved: (user, token) => {
-        return axios.get(`https://oauth.reddit.com/user/${user}/saved`, { headers: { Authorization: 'Bearer ' + token } })
+        return axios.get(`https://oauth.reddit.com/user/${user}/saved?raw_json=1`, { headers: { Authorization: 'Bearer ' + token } })
             .catch(err => {
                 console.log(err.response);
                 return err.response
@@ -126,7 +126,6 @@ export const Reddit = {
             youtube: youtube,
             images: images,
             gifv: gifv
-
         }
         return media;
     }
