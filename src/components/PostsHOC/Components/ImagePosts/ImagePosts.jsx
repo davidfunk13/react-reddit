@@ -46,15 +46,16 @@ export default class ImagePosts extends Component {
   render() {
     const posts = this.props.posts.filter(post => post.kind === 't3');
     let mediaOnly = Reddit.gridSort(posts);
-    let randomizeMedia = this.shuffle([...mediaOnly.gfycat, ...mediaOnly.images, ...mediaOnly.gifv, ...mediaOnly.redditVideo, ...mediaOnly.youtube]);
-    return <ImageGrid
+    let randomizeMedia = this.shuffle(mediaOnly.allPosts);
+    return (<ImageGrid
+    allPosts={this.getPostsWithColumns(mediaOnly.allPosts)}
       gfycat={this.getPostsWithColumns(mediaOnly.gfycat)}
       images={this.getPostsWithColumns(mediaOnly.images)}
       gifv={this.getPostsWithColumns(mediaOnly.gifv)}
       redditVideo={this.getPostsWithColumns(mediaOnly.redditVideo)}
       youtube={this.getPostsWithColumns(mediaOnly.youtube)}
-      tileData={this.getPostsWithColumns(randomizeMedia)}
+      randomizeTiles={this.getPostsWithColumns(randomizeMedia)}
       {...this.props}
-    />
+    />)
   }
 }

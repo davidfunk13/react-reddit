@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React, {Fragment, Component } from 'react';
 import { GridList, GridListTile, Dialog, Paper } from '@material-ui/core';
 import thumb from '../../../../assets/img/thumb.png'
 import SelectedImage from '../SelectedImage/SelectedImage';
+import { Reddit } from '../../../../../../utils/Reddit';
 
 export default class ImageGrid extends Component {
   state = {
     isOpen: false,
     posts: {
-      all: this.props.tileData,
+      all: this.props.allPosts,
       gfycat: this.props.gfycat,
       images: this.props.images,
       redditVideo: this.props.redditVideo,
@@ -54,18 +55,23 @@ export default class ImageGrid extends Component {
           <SelectedImage imageData={this.state.current} toggleModal={this.toggleModal} {...this.props} />
         </Dialog>
         <Paper elevation={4}>
-        <GridList className={classes.gridList} cols={3}>
-        {this.state.posts.all.map(post=>{
-          console.log(post)
-          if(post.data.domain === 'gfycat.com'){
-            let {oembed} = post.data.media;
-            let parsedHtml;
-            parsedHtml = oembed.html.replace('&lt;', '<').replace('&gt;','>').replace('&amp;','&');
-            console.log(parsedHtml)
-            console.log(oembed)
-          }
-        })}
-          {/* {posts.map((tile, index) => {
+          <GridList className={classes.gridList} cols={3}>
+            {this.state.posts.all.map(post => {
+              console.log(post)
+              if (post.data.domain === 'gfycat.com') {
+                let { oembed } = post.data.media;
+                let srcWithQuotes = oembed.html.match(/src\=([^\s]*)\s/)[1];
+                let src = srcWithQuotes.substring(1,srcWithQuotes.length - 1);
+
+                console.log(post.data.preview.images[0].resolutions[1])
+                return (
+                  <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(post.data.url, post.data.title)} key={post.data.id} cols={post.cols}>
+                      <img src={post.data.preview.images[0].resolutions[1].url} alt=""/>
+                  </GridListTile>
+                )
+              }
+            })}
+            {/* {posts.map((tile, index) => {
             if (tile.data.url.includes('gifv')) {
               let url = tile.data.url.replace('gifv', 'mp4')
               return (
@@ -84,7 +90,7 @@ export default class ImageGrid extends Component {
               )
             }
           })} */}
-        </GridList>
+          </GridList>
         </Paper>
       </div>
     );

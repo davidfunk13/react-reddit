@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { Comment, Link, Image, Video } from '../components/PostsHOC/Components/AllPosts/Components/Posts/index';
 
+
 export const Reddit = {
     masterUser: (token) => {
         return axios.get('https://oauth.reddit.com/api/v1/me', { headers: { Authorization: 'Bearer ' + token } })
@@ -45,6 +46,8 @@ export const Reddit = {
             extensions.map(ext => {
                 if (ext === fileExtension && isImage !== true) {
                     return isImage = true;
+                } else{
+                    return 'else'
                 }
             })
             if (isImage === true) {
@@ -61,6 +64,7 @@ export const Reddit = {
         let redditVideo = [];
         let youtube = [];
         let gifv = [];
+        let allPosts = [];
         let uncaught = [];
         let extensions = ['gifv', 'gif', 'jpg', 'jpeg', 'png'];
         let fileExtension;
@@ -68,18 +72,21 @@ export const Reddit = {
             let caught = false;
             if (post.data.domain === 'gfycat.com') {
                 caught = !caught
+                allPosts.push(post);
                 gfycat.push(post);
-                return;
+                return 'done gfycat';
             }
             if (post.data.domain.includes('imgur')) {
                 if (post.data.url.includes('gifv')) {
                     caught = !caught;
+                    allPosts.push(post);
                     gifv.push(post);
-                    return;
+                    return 'done imgur gifv';
                 } else {
                     caught = !caught
+                    allPosts.push(post);
                     images.push(post);
-                    return;
+                    return 'done imgur image';
                 }
             };
             let isImage = false;
@@ -88,39 +95,47 @@ export const Reddit = {
             extensions.map(ext => {
                 if (ext === fileExtension && isImage !== true) {
                     return isImage = true;
+                } else{
+                    return 'not an extension match'
                 }
             })
 
             if (isImage === true) {
-                caught = !caught
+                caught = !caught;
+                allPosts.push(post);
                 images.push(post);
-                return;
+                return 'is other kind of image';
             }
             if (post.data.post_hint && post.data.post_hint === 'rich:video') {
                 if (post.data.domain === 'youtube.com' || post.data.domain === 'youtu.be') {
                     caught = !caught;
+                    allPosts.push(post);
                     youtube.push(post);
-                    return
+                    return 'done youtube';
                 }
             }
 
             if (post.data.post_hint && post.data.post_hint === 'hosted:video') {
                 caught = !caught
+                allPosts.push(post);
                 redditVideo.push(post);
-                return;
+                return 'done redditvideo';
             } else if (post.data.domain === 'v.redd.it') {
                 caught = !caught;
+                allPosts.push(post);
                 redditVideo.push(post);
-                return;
+                return 'done reddit video';
             };
 
             if (caught === false) {
                 caught = !caught;
                 uncaught.push(post);
-                return;
+                return 'finished uncaught';
             }
+            return 'loop';
         })
         let media = {
+            allPosts: allPosts,
             gfycat: gfycat,
             redditVideo: redditVideo,
             youtube: youtube,
@@ -128,6 +143,10 @@ export const Reddit = {
             gifv: gifv
         }
         return media;
+    },
+    htmlParse: (htmlString) =>{
+        let className = htmlString.replace('class', 'className');
+        console.log(className)
     }
 
 }
