@@ -1,4 +1,4 @@
-import React, {Fragment, Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import { GridList, GridListTile, Dialog, Paper } from '@material-ui/core';
 import thumb from '../../../../assets/img/thumb.png'
 import SelectedImage from '../SelectedImage/SelectedImage';
@@ -47,8 +47,7 @@ export default class ImageGrid extends Component {
 
   render() {
     const { classes } = this.props.store;
-    const posts = this.props.tileData
-    console.log(this.state)
+    const { all } = this.state.posts;
     return (
       <div>
         <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>
@@ -56,19 +55,21 @@ export default class ImageGrid extends Component {
         </Dialog>
         <Paper elevation={4}>
           <GridList className={classes.gridList} cols={3}>
-            {this.state.posts.all.map(post => {
-              if (post.data.domain === 'gfycat.com') {
-                let { oembed } = post.data.media;
-                let srcWithQuotes = oembed.html.match(/src\=([^\s]*)\s/)[1];
-                let src = srcWithQuotes.substring(1,srcWithQuotes.length - 1);
-                return (
-                  <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(post.data.url, post.data.title)} key={post.data.id} cols={post.cols}>
-                      <img src={post.data.preview.images[0].resolutions[1].url} alt=""/>
-                  </GridListTile>
-                )
-              }
-              else{
-                console.log(post);
+            {all.map(post => {
+              switch (post.type) {
+                case 'gfycat':
+                  let { oembed } = post.data.media;
+                  let srcWithQuotes = oembed.html.match(/src\=([^\s]*)\s/)[1];
+                  let thumb = post.data.preview.images[0].resolutions[1].url;
+                  let src = srcWithQuotes.substring(1, srcWithQuotes.length - 1);
+                  return (
+                    <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(src, post.data.title)} key={post.data.id} type={post.type} cols={post.cols}>
+                      <img src={thumb} alt={post.data.title} />
+                    </GridListTile>
+                  )
+                  case 'youtube': 
+                  console.log('youtube', post);
+                default: return 'something went wrong'
               }
             })}
             {/* {posts.map((tile, index) => {

@@ -73,17 +73,17 @@ export const Reddit = {
             if (post.data.domain === 'gfycat.com') {
                 caught = !caught
                 return (
-                    allPosts = [...allPosts, post],
-                    gfycat = [...gfycat, post]
+                    allPosts = [...allPosts, {...post, type: 'gfycat'}],
+                    gfycat = [...gfycat, {...post, type: 'gfycat'}]
                 )
             }
             if (post.data.domain.includes('imgur')) {
                 if (post.data.url.includes('gifv')) {
                     caught = !caught;
-                    return (allPosts = [...allPosts, post], gifv = [...gifv, post]);
+                    return (allPosts = [...allPosts, {...post, type: 'gifv'}], gifv = [...gifv, {...post, type: 'gifv'}]);
                 } else {
-                    caught = !caught
-                    return (allPosts = [...allPosts, post], images = [...images, post]);
+                    caught = !caught;
+                    return (allPosts = [...allPosts, {...post, type: 'image'}], images = [...images, {...post, type: 'image'}]);
                 }
             };
             let isImage = false;
@@ -99,27 +99,28 @@ export const Reddit = {
 
             if (isImage === true) {
                 caught = !caught;
-                return (allPosts = [...allPosts, post], images = [...images, post]);
+                return (allPosts = [...allPosts, {...post, type: 'image'}], images = [...images, {...post, type:'image'}]);
             }
             if (post.data.post_hint && post.data.post_hint === 'rich:video') {
                 if (post.data.domain === 'youtube.com' || post.data.domain === 'youtu.be') {
                     caught = !caught;
-                    return (allPosts = [...allPosts, post], youtube = [...youtube, post]);
+                    return (allPosts = [...allPosts, {...post, type: 'youtube'}], youtube = [...youtube, {...post, type: 'youtube'}]);
                 }
             }
 
             if (post.data.post_hint && post.data.post_hint === 'hosted:video') {
                 caught = !caught
-                return (allPosts = [...allPosts, post], redditVideo = [...redditVideo, post]);
+                return (allPosts = [...allPosts, {...post, type: 'redditVideo'}], redditVideo = [...redditVideo, {...post, type: 'redditVideo'}]);
             } else if (post.data.domain === 'v.redd.it') {
                 caught = !caught;
-                return (allPosts = [...allPosts, post], redditVideo = [...redditVideo, post]);
+                return (allPosts = [...allPosts, {...post, type: 'redditVideo'}], redditVideo = [...redditVideo, {...post, type: 'redditVideo'}]);
             };
 
             if (caught === false) {
                 caught = !caught;
-                uncaught = [...uncaught, post];
+               return uncaught = [...uncaught, {...post, type: 'uncaught'}];
             }
+            return 'löööööööööööps brotha'
         })
         let media = {
             allPosts: allPosts,
@@ -131,9 +132,5 @@ export const Reddit = {
         }
         return media;
     },
-    htmlParse: (htmlString) => {
-        let className = htmlString.replace('class', 'className');
-        console.log(className)
-    }
 
 }
