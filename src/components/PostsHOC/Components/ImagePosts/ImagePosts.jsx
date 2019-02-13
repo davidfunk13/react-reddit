@@ -31,31 +31,20 @@ export default class ImagePosts extends Component {
     }, []);
     return postsWithColumns.reduce((accum, group) => [...accum, ...group], []);
   };
-  shuffle = (array) => {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-    while (0 !== currentIndex) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-    return array;
-  }
 
   render() {
     const posts = this.props.posts.filter(post => post.kind === 't3');
     let mediaOnly = Reddit.gridSort(posts);
-    let randomizeMedia = this.shuffle(mediaOnly.allPosts);
-    return (<ImageGrid
-      allPosts={this.getPostsWithColumns(mediaOnly.allPosts)}
-      gfycat={this.getPostsWithColumns(mediaOnly.gfycat)}
-      images={this.getPostsWithColumns(mediaOnly.images)}
-      gifv={this.getPostsWithColumns(mediaOnly.gifv)}
-      redditVideo={this.getPostsWithColumns(mediaOnly.redditVideo)}
-      youtube={this.getPostsWithColumns(mediaOnly.youtube)}
-      randomizeTiles={this.getPostsWithColumns(randomizeMedia)}
-      {...this.props}
-    />)
+    return (
+      <ImageGrid
+        allPosts={this.getPostsWithColumns(mediaOnly.allPosts)}
+        gfycat={this.getPostsWithColumns(mediaOnly.gfycat)}
+        images={this.getPostsWithColumns(mediaOnly.images)}
+        gifv={this.getPostsWithColumns(mediaOnly.gifv)}
+        redditVideo={this.getPostsWithColumns(mediaOnly.redditVideo)}
+        youtube={this.getPostsWithColumns(mediaOnly.youtube)}
+        {...this.props}
+      />
+    )
   }
 }
