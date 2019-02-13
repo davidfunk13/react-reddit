@@ -16,15 +16,17 @@ export default class ImageGrid extends Component {
       gifv: this.props.gifv
     },
     current: {
+      type: '',
       img: '',
       title: ''
     }
   }
 
-  handleOpen = (img, title) => {
+  handleOpen = (img, title, type) => {
     this.setState({
       isOpen: true,
       current: {
+        type: type,
         img: img,
         title: title,
       }
@@ -56,20 +58,40 @@ export default class ImageGrid extends Component {
         <Paper elevation={4}>
           <GridList className={classes.gridList} cols={3}>
             {all.map(post => {
-              switch (post.type) {
-                case 'gfycat':
-                  let { oembed } = post.data.media;
-                  let srcWithQuotes = oembed.html.match(/src\=([^\s]*)\s/)[1];
-                  let thumb = post.data.preview.images[0].resolutions[1].url;
-                  let src = srcWithQuotes.substring(1, srcWithQuotes.length - 1);
-                  return (
-                    <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(src, post.data.title)} key={post.data.id} type={post.type} cols={post.cols}>
-                      <img src={thumb} alt={post.data.title} />
-                    </GridListTile>
-                  )
-                  case 'youtube': 
-                  console.log('youtube', post);
-                default: return 'something went wrong'
+              if (post.type === 'gfycat') {
+                let { oembed } = post.data.media;
+                let srcWithQuotes = oembed.html.match(/src\=([^\s]*)\s/)[1];
+                let thumb = post.data.preview.images[0].resolutions[1].url;
+                let src = srcWithQuotes.substring(1, srcWithQuotes.length - 1);
+                return (
+                  <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(oembed, post.data.title, post.type)} key={post.data.id} type={post.type} cols={post.cols}>
+                    <img src={thumb} alt={post.data.title} />
+                  </GridListTile>
+                );
+              } else if (post.type === 'youtube') {
+                let { oembed } = post.data.media;
+                let thumb = oembed.thumbnail_url;
+                return (
+                  <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(oembed, post.data.title, post.type)} key={post.data.id} type={post.type} cols={post.cols}>
+                    <img src={thumb} alt={post.data.title} />
+                  </GridListTile>
+                )
+              } else if (post.type === 'redditVideo') {
+                
+                let { reddit_video } = post.data.secure_media;
+                console.log(reddit_video)
+                let thumb = post.data.preview.images[0].resolutions[1].url;
+                return (
+                  <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(reddit_video, post.data.title, post.type)} key={post.data.id} type={post.type} cols={post.cols}>
+                    <img src={thumb} alt={post.data.title} />
+                  </GridListTile>
+                )
+              } else if (post.type === 'image') {
+                return (
+                  <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(post.data.url, post.data.title, post.type)} key={post.data.id} type={post.type} cols={post.cols}>
+                    <img src={post.data.url} alt={post.data.title} />
+                  </GridListTile>
+                )
               }
             })}
             {/* {posts.map((tile, index) => {
