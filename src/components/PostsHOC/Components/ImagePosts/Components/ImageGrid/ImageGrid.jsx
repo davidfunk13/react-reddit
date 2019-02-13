@@ -2,7 +2,7 @@ import React, {Fragment, Component } from 'react';
 import { GridList, GridListTile, Dialog, Paper } from '@material-ui/core';
 import thumb from '../../../../assets/img/thumb.png'
 import SelectedImage from '../SelectedImage/SelectedImage';
-import { Reddit } from '../../../../../../utils/Reddit';
+
 
 export default class ImageGrid extends Component {
   state = {
@@ -57,18 +57,18 @@ export default class ImageGrid extends Component {
         <Paper elevation={4}>
           <GridList className={classes.gridList} cols={3}>
             {this.state.posts.all.map(post => {
-              console.log(post)
               if (post.data.domain === 'gfycat.com') {
                 let { oembed } = post.data.media;
                 let srcWithQuotes = oembed.html.match(/src\=([^\s]*)\s/)[1];
                 let src = srcWithQuotes.substring(1,srcWithQuotes.length - 1);
-
-                console.log(post.data.preview.images[0].resolutions[1])
                 return (
                   <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(post.data.url, post.data.title)} key={post.data.id} cols={post.cols}>
                       <img src={post.data.preview.images[0].resolutions[1].url} alt=""/>
                   </GridListTile>
                 )
+              }
+              else{
+                console.log(post);
               }
             })}
             {/* {posts.map((tile, index) => {

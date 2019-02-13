@@ -48,7 +48,7 @@ export default class ImagePosts extends Component {
     let mediaOnly = Reddit.gridSort(posts);
     let randomizeMedia = this.shuffle(mediaOnly.allPosts);
     return (<ImageGrid
-    allPosts={this.getPostsWithColumns(mediaOnly.allPosts)}
+      allPosts={this.getPostsWithColumns(mediaOnly.allPosts)}
       gfycat={this.getPostsWithColumns(mediaOnly.gfycat)}
       images={this.getPostsWithColumns(mediaOnly.images)}
       gifv={this.getPostsWithColumns(mediaOnly.gifv)}

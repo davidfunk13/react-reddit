@@ -1,17 +1,30 @@
 import axios from 'axios';
 import React from 'react';
-import { Comment, Link, Image, Video } from '../components/PostsHOC/Components/AllPosts/Components/Posts/index';
+import {
+    Comment,
+    Link,
+    Image,
+    Video
+} from '../components/PostsHOC/Components/AllPosts/Components/Posts/index';
 
 
 export const Reddit = {
     masterUser: (token) => {
-        return axios.get('https://oauth.reddit.com/api/v1/me', { headers: { Authorization: 'Bearer ' + token } })
+        return axios.get('https://oauth.reddit.com/api/v1/me', {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            })
             .catch(err => {
                 return err.response
             });
     },
     fetchSaved: (user, token) => {
-        return axios.get(`https://oauth.reddit.com/user/${user}/saved?raw_json=1`, { headers: { Authorization: 'Bearer ' + token } })
+        return axios.get(`https://oauth.reddit.com/user/${user}/saved?raw_json=1`, {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            })
             .catch(err => {
                 console.log(err.response);
                 return err.response
@@ -27,16 +40,48 @@ export const Reddit = {
             body: post.data.body
         };
         if (post1.body) {
-            return <Comment key={post.data.id} post={post} {...props} />
+            return <Comment key = {
+                post.data.id
+            }
+            post = {
+                post
+            } {
+                ...props
+            }
+            />
         }
         if (post1.domain.includes('gfycat')) {
-            return <Video key={post.data.id} post={post} {...props} />;
+            return <Video key = {
+                post.data.id
+            }
+            post = {
+                post
+            } {
+                ...props
+            }
+            />;
         }
         if (post1.domain.includes('imgur')) {
             if (post1.url.includes('gifv')) {
-                return <Video key={post.data.id} post={post} {...props} />;
+                return <Video key = {
+                    post.data.id
+                }
+                post = {
+                    post
+                } {
+                    ...props
+                }
+                />;
             } else {
-                return <Image key={post.data.id} post={post} {...props} />
+                return <Image key = {
+                    post.data.id
+                }
+                post = {
+                    post
+                } {
+                    ...props
+                }
+                />
             }
         }
         if (("url" in post.data)) {
@@ -46,14 +91,30 @@ export const Reddit = {
             extensions.map(ext => {
                 if (ext === fileExtension && isImage !== true) {
                     return isImage = true;
-                } else{
+                } else {
                     return 'else'
                 }
             })
             if (isImage === true) {
-                return <Image key={post.data.id} post={post} {...props} />
+                return <Image key = {
+                    post.data.id
+                }
+                post = {
+                    post
+                } {
+                    ...props
+                }
+                />
             } else {
-                return <Link key={post.data.id} post={post} {...props} />
+                return <Link key = {
+                    post.data.id
+                }
+                post = {
+                    post
+                } {
+                    ...props
+                }
+                />
             }
         }
         console.log(post);
@@ -72,21 +133,18 @@ export const Reddit = {
             let caught = false;
             if (post.data.domain === 'gfycat.com') {
                 caught = !caught
-                allPosts.push(post);
-                gfycat.push(post);
-                return 'done gfycat';
+                return (
+                    allPosts = [...allPosts, post],
+                    gfycat = [...gfycat, post]
+                )
             }
             if (post.data.domain.includes('imgur')) {
                 if (post.data.url.includes('gifv')) {
                     caught = !caught;
-                    allPosts.push(post);
-                    gifv.push(post);
-                    return 'done imgur gifv';
+                    return (allPosts = [...allPosts, post], gifv = [...gifv, post]);
                 } else {
                     caught = !caught
-                    allPosts.push(post);
-                    images.push(post);
-                    return 'done imgur image';
+                    return (allPosts = [...allPosts, post], images = [...images, post]);
                 }
             };
             let isImage = false;
@@ -95,44 +153,34 @@ export const Reddit = {
             extensions.map(ext => {
                 if (ext === fileExtension && isImage !== true) {
                     return isImage = true;
-                } else{
+                } else {
                     return 'not an extension match'
                 }
             })
 
             if (isImage === true) {
                 caught = !caught;
-                allPosts.push(post);
-                images.push(post);
-                return 'is other kind of image';
+                return (allPosts = [...allPosts, post], images = [...images, post]);
             }
             if (post.data.post_hint && post.data.post_hint === 'rich:video') {
                 if (post.data.domain === 'youtube.com' || post.data.domain === 'youtu.be') {
                     caught = !caught;
-                    allPosts.push(post);
-                    youtube.push(post);
-                    return 'done youtube';
+                    return (allPosts = [...allPosts, post], youtube = [...youtube, post]);
                 }
             }
 
             if (post.data.post_hint && post.data.post_hint === 'hosted:video') {
                 caught = !caught
-                allPosts.push(post);
-                redditVideo.push(post);
-                return 'done redditvideo';
+                return (allPosts = [...allPosts, post], redditVideo = [...redditVideo, post]);
             } else if (post.data.domain === 'v.redd.it') {
                 caught = !caught;
-                allPosts.push(post);
-                redditVideo.push(post);
-                return 'done reddit video';
+                return (allPosts = [...allPosts, post], redditVideo = [...redditVideo, post]);
             };
 
             if (caught === false) {
                 caught = !caught;
-                uncaught.push(post);
-                return 'finished uncaught';
+                uncaught = [...uncaught, post];
             }
-            return 'loop';
         })
         let media = {
             allPosts: allPosts,
@@ -144,9 +192,4 @@ export const Reddit = {
         }
         return media;
     },
-    htmlParse: (htmlString) =>{
-        let className = htmlString.replace('class', 'className');
-        console.log(className)
-    }
-
 }
