@@ -5,6 +5,9 @@ import SelectedImage from '../SelectedImage/SelectedImage';
 
 
 export default class ImageGrid extends Component {
+  componentDidMount() {
+    console.log(this.props)
+  }
   state = {
     isOpen: false,
     posts: {
@@ -29,6 +32,7 @@ export default class ImageGrid extends Component {
         type: type,
         img: img,
         title: title,
+        thumb: thumb,
       }
     });
   };
@@ -77,9 +81,8 @@ export default class ImageGrid extends Component {
                   </GridListTile>
                 )
               } else if (post.type === 'redditVideo') {
-                
+
                 let { reddit_video } = post.data.secure_media;
-                console.log(reddit_video)
                 let thumb = post.data.preview.images[0].resolutions[1].url;
                 return (
                   <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(reddit_video, post.data.title, post.type)} key={post.data.id} type={post.type} cols={post.cols}>
@@ -92,27 +95,19 @@ export default class ImageGrid extends Component {
                     <img src={post.data.url} alt={post.data.title} />
                   </GridListTile>
                 )
+              } else if (post.type === 'gifv') {
+            
+                let url = post.data.url.replace('gifv', 'mp4');
+                let thumb = post.data.preview.images[0].resolutions[1].url;
+
+                return (
+                  <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(url, post.data.title, post.type)} key={post.data.id} type={post.type} cols={post.cols}>
+                    <img onError={(e) => { e.target.onerror = null; e.target.src = thumb }} src={thumb} alt={post.data.title} />
+
+                  </GridListTile>
+                )
               }
             })}
-            {/* {posts.map((tile, index) => {
-            if (tile.data.url.includes('gifv')) {
-              let url = tile.data.url.replace('gifv', 'mp4')
-              return (
-                <GridListTile  style={{padding:'0'}} onClick={() => this.handleOpen(url, tile.data.title)} key={tile.data.url} cols={tile.cols}>
-                  <video onError={(e) => { e.target.onerror = null; e.target.src = thumb }} autoPlay loop>
-                    <source src={url} type="video/mp4"></source>
-                  </video>
-                </GridListTile>
-              )
-            } 
-            else {
-              return (
-                <GridListTile style={{padding: '0'}} onClick={() => this.handleOpen(tile.data.url, tile.data.title)} key={tile.data.url} cols={tile.cols}>
-                  <img onError={(e) => { e.target.onerror = null; e.target.src = thumb }} src={tile.data.url} alt="" />
-                </GridListTile>
-              )
-            }
-          })} */}
           </GridList>
         </Paper>
       </div>
