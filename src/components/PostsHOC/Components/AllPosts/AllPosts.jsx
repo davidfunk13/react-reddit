@@ -1,9 +1,33 @@
 import React, { Component } from 'react';
-import {Reddit} from '../../../../utils/Reddit.js';
-
+import { Reddit } from '../../../../utils/Reddit.js';
+import { Dialog } from '@material-ui/core';
+import SelectedPost from './Components/SelectedPost/SelectedPost';
 import thumb from '../../assets/img/thumb.png'
 
 export default class AllPosts extends Component {
+    state = {
+        isOpen: false,
+    }
+    handleOpen = (post, title, type) => {
+        this.setState({
+            isOpen: true,
+            current: {
+                type: type,
+                post: post,
+                title: title,
+                thumb: thumb,
+            }
+        });
+    };
+
+    handleClose = () => {
+        this.setState({ isOpen: false });
+    }
+
+    toggleModal = () => {
+        this.setState({ isOpen: !this.state.isOpen });
+    }
+
     renderThumb = (thumbData) => {
         switch (thumbData) {
             case 'self':
@@ -13,13 +37,20 @@ export default class AllPosts extends Component {
             default:
                 return thumbData;
         }
-    }
+    };
+
     render() {
         const { posts } = this.props;
+        let { classes } = this.props.store;
         return (
             <div>
+                <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>
+                    <SelectedPost {...this.props} />
+                </Dialog>
                 {posts.map((post, index) => {
-                    return Reddit.sortPosts(post, this.props);
+                   return <div key={post.data.id} onClick={() => this.handleOpen({}, '', '')}>
+                        {Reddit.sortPosts(post, this.props)}
+                    </div>
                 })}
             </div>
         )

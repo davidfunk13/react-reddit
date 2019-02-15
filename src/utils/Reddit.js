@@ -34,7 +34,9 @@ export const Reddit = {
         }
         if (post1.domain.includes('imgur')) {
             if (post1.url.includes('gifv')) {
-                return <Video key={post.data.id} post={post} {...props} />;
+                return (
+                <Video key={post.data.id} post={post} {...props} />
+                );
             } else {
                 return <Image key={post.data.id} post={post} {...props} />
             }
