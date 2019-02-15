@@ -17,7 +17,8 @@ export const Reddit = {
                 return err.response
             });
     },
-    sortPosts: (post, props) => {
+    sortPosts: (post, props, isModal) => {
+        console.log(isModal)
         let extensions = ['gifv', 'gif', 'jpg', 'jpeg', 'png'];
         let fileExtension;
         let post1 = {

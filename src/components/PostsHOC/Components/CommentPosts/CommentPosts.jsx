@@ -12,10 +12,8 @@ export default class CommentPosts extends Component {
         this.setState({
             isOpen: true,
             current: {
-                type: type,
-                post: post,
-                title: title,
-                thumb: thumb,
+                author: post.data.author,
+                comment: post.data.body
             }
         });
     };
@@ -35,11 +33,11 @@ export default class CommentPosts extends Component {
         return (
             <div>
                 <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>
-                    <SelectedComment {...this.props} />
+                    <SelectedComment comment={this.state.current} {...this.props} />
                 </Dialog>
                 {posts.map(post => {
                     return (
-                        <div key={post.data.id} onClick={()=> this.handleOpen({}, 'asdasd', 'asdasd')}>
+                        <div key={post.data.id} onClick={()=> this.handleOpen(post)}>
                             <Comment key={post.data.id} post={post} {...this.props} />
                         </div>
                     )
