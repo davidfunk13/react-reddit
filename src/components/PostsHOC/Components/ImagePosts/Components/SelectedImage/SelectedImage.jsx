@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Typography, Grid, Button } from '@material-ui/core';
+
 
 export default class SelectedImage extends Component {
 
@@ -26,22 +28,22 @@ export default class SelectedImage extends Component {
                     </div>
                     :
                     type === 'redditVideo' ?
-                    <div style={{display: 'flex', flexFlow: 'column', alignContent: 'center'}}>
-                        <video style={{ maxHeight: '60vh', maxWidth: '100vw' }} onError={(e) => { e.target.onerror = null; e.target.src = imageData.thumb }} autoPlay loop>
-                            <source src={imageData.img.fallback_url} type="video/mp4"></source>
-                        </video>
-                    </div>
+                        <div style={{ display: 'flex', flexFlow: 'column', alignContent: 'center' }}>
+                            <video style={{ maxHeight: '60vh', maxWidth: '100vw' }} onError={(e) => { e.target.onerror = null; e.target.src = imageData.thumb }} autoPlay loop>
+                                <source src={imageData.img.fallback_url} type="video/mp4"></source>
+                            </video>
+                        </div>
                         :
                         type === 'image' ?
-                        <div style={{display: 'flex', flexFlow: 'column', alignItems: 'center'}}>
-                            <img style={{ maxWidth: '100vw', maxHeight: '60vh'  }} src={imageData.img} alt={imageData.title} />
+                            <div style={{ display: 'flex', flexFlow: 'column', alignItems: 'center' }}>
+                                <img style={{ maxWidth: '100vw', maxHeight: '60vh' }} src={imageData.img} alt={imageData.title} />
                             </div>
                             :
                             type === 'gifv' ?
-                            <div style={{display: 'flex', flexFlow: 'column', alignContent: 'center'}}>
-                                <video style={{ maxHeight: '55vh', width: '100%' }} onError={(e) => { e.target.onerror = null; e.target.src = imageData.thumb }} autoPlay loop>
-                                    <source src={imageData.img} type="video/mp4"></source>
-                                </video>
+                                <div style={{ display: 'flex', flexFlow: 'column', alignContent: 'center' }}>
+                                    <video style={{ maxHeight: '55vh', width: '100%' }} onError={(e) => { e.target.onerror = null; e.target.src = imageData.thumb }} autoPlay loop>
+                                        <source src={imageData.img} type="video/mp4"></source>
+                                    </video>
                                 </div>
                                 :
                                 type === 'youtube' ?
@@ -54,11 +56,17 @@ export default class SelectedImage extends Component {
                                     :
                                     null
                 }
-                <div className={classes.modalText}>
-                    {type === 'redditVideo' ? <p>There is unfortunately no sound for Reddit hosted video, as they have gone to great lengths to ensure that even though they have a public facing API, videos arent possible to embed or download properly. You're doing great, Reddit! :)</p> : null}
-                    <p>{this.props.imageData.title}</p>
-                    <button onClick={() => this.props.toggleModal()}>Toggle</button>
-                </div>
+                <Grid container spacing={8} direction="column" alignItems={"center"} >
+                    <Grid item>
+                        <Typography align={"center"} >
+                            {this.props.imageData.title}
+                        </Typography>
+                    </Grid>
+                    <Grid item >
+                    <Button  variant="contained" color={"secondary"} onClick={()=> this.props.toggleModal()}>Close Modal</Button>
+                    {/* <button onClick={() => this.props.toggleModal()}>Toggle</button> */}
+                    </Grid>
+                </Grid>
             </div>
         );
     }

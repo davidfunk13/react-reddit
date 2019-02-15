@@ -13,11 +13,9 @@ export default class SelectedComment extends Component {
             <div>
                 <div className={classes.modalText}>
                     <Typography>
-                      
                         {this.props.comment.author}
                     </Typography>
                     <Typography>
-                      
                         {this.props.comment.comment}
                     </Typography>
                     <button onClick={() => this.props.toggleModal()}>Toggle</button>
