@@ -1,9 +1,6 @@
 const drawerWidth = 240;
 
 const styles = (theme) => ({
-    section: {
-        paddingBottom: '1rem'
-    },
     appBar: {
         whiteSpace: 'nowrap',
         transition: theme.transitions.create(["margin", "width"], {
@@ -74,24 +71,6 @@ const styles = (theme) => ({
     postThumb: {
         width: '100%',
         height: '100%',
-    },
-    postText: {
-        marginRight: '2rem'
-    },
-    imageContainer: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-    },
-    gridList: {
-        padding: '.5px',
-        width: '85vw',
-        height: '90vh',
-    },
-    modalImg: {
-        maxWidth: '100%',
-        maxHeight: '75vh'
     },
     dialog: {
         width: '85vw',
