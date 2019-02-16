@@ -5,9 +5,6 @@ import SelectedImage from '../SelectedImage/SelectedImage';
 
 
 export default class ImageGrid extends Component {
-  componentDidMount() {
-    console.log(this.props)
-  }
   state = {
     isOpen: false,
     posts: {
@@ -24,7 +21,6 @@ export default class ImageGrid extends Component {
       title: ''
     }
   }
-
   handleOpen = (img, title, type) => {
     this.setState({
       isOpen: true,
@@ -36,15 +32,12 @@ export default class ImageGrid extends Component {
       }
     });
   };
-
   handleClose = () => {
     this.setState({ isOpen: false });
   }
-
   toggleModal = () => {
     this.setState({ isOpen: !this.state.isOpen });
   }
-
   imgError = (image) => {
     image.onerror = "";
     image.src = "../AllPosts/thumb.png";
@@ -96,14 +89,11 @@ export default class ImageGrid extends Component {
                   </GridListTile>
                 )
               } else if (post.type === 'gifv') {
-            
                 let url = post.data.url.replace('gifv', 'mp4');
                 let thumb = post.data.preview.images[0].resolutions[1].url;
-
                 return (
                   <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(url, post.data.title, post.type)} key={post.data.id} type={post.type} cols={post.cols}>
                     <img onError={(e) => { e.target.onerror = null; e.target.src = thumb }} src={thumb} alt={post.data.title} />
-
                   </GridListTile>
                 )
               }

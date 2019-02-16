@@ -94,9 +94,9 @@ const styles = (theme) => ({
         maxHeight: '75vh'
     },
     dialog: {
-        width: '95vw',
-        margin: '0',
-      height: 'auto'
+        width: '85vw',
+        padding: '1rem ',
+        margin:'0'
     },
 });
 

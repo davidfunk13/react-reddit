@@ -123,8 +123,6 @@ export const Reddit = {
                 caught = !caught;
                return uncaught = [...uncaught, {...post, type: 'uncaught'}];
             }
-            console.log('made it here');
-            console.log(post)
             return 'löööööööööööps brotha'
         })
         let media = {
