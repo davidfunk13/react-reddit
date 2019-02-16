@@ -28,18 +28,18 @@ export const Reddit = {
             body: post.data.body
         };
         if (post1.body) {
-            return <Comment key={post.data.id} post={post} {...props} />
+            return <Comment key={post.data.id} type={'comment'} post={post} {...props} />
         }
         if (post1.domain.includes('gfycat')) {
-            return <Video key={post.data.id} post={post} {...props} />;
+            return <Video type={'video'} key={post.data.id} post={post} {...props} />;
         }
         if (post1.domain.includes('imgur')) {
             if (post1.url.includes('gifv')) {
                 return (
-                <Video key={post.data.id} post={post} {...props} />
+                <Video key={post.data.id} type={'video'} post={post} {...props} />
                 );
             } else {
-                return <Image key={post.data.id} post={post} {...props} />
+                return <Image key={post.data.id} type={'image'} post={post} {...props} />
             }
         }
         if (("url" in post.data)) {
@@ -54,9 +54,9 @@ export const Reddit = {
                 }
             })
             if (isImage === true) {
-                return <Image key={post.data.id} post={post} {...props} />
+                return <Image key={post.data.id} type={'image'} post={post} {...props} />
             } else {
-                return <Link key={post.data.id} post={post} {...props} />
+                return <Link key={post.data.id} type={'image'} post={post} {...props} />
             }
         }
         console.log(post);
@@ -135,5 +135,7 @@ export const Reddit = {
         }
         return media;
     },
+    modalConverter: () =>{
 
+    }
 }

@@ -14,12 +14,15 @@ export default class SelectedComment extends Component {
                 <Grid container spacing={8} direction={"column"} alignContent={"center"} >
                     <Grid item>
                         <Typography>
-                            {this.props.comment.author}
+                            Author: {this.props.comment.author}
                         </Typography>
                     </Grid>
                     <Grid item>
                         <Paper style={classes.SelectedComment} elevation={8}>
-                            <Typography>
+                            <Typography style={{ padding: '1rem 1rem 0 1rem' }}>
+                                Comment
+                            </Typography>
+                            <Typography style={{ padding: '1rem' }}>
                                 {this.props.comment.comment}
                             </Typography>
                         </Paper>

@@ -72,6 +72,11 @@ const styles = (theme) => ({
         width: '100%',
         height: '100%',
     },
+    gridList: {
+        padding: '.5px',
+        width: '85vw',
+        height: '90vh',
+    },
     dialog: {
         width: '85vw',
         padding: '1rem ',

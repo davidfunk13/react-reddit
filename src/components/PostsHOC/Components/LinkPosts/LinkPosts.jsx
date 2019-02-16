@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from '../AllPosts/Components/Posts/index';
 import SelectedLink from './Components/SelectedLink/SelectedLink';
 import { Reddit } from '../../../../utils/Reddit';
-import {Dialog} from '@material-ui/core';
+import { Dialog } from '@material-ui/core';
 import thumb from '../../assets/img/thumb.png';
 export default class LinkPost extends Component {
     state = {
@@ -12,9 +12,7 @@ export default class LinkPost extends Component {
         this.setState({
             isOpen: true,
             current: {
-                type: type,
                 post: post,
-                title: title,
                 thumb: thumb,
             }
         });
@@ -28,16 +26,16 @@ export default class LinkPost extends Component {
         this.setState({ isOpen: !this.state.isOpen });
     }
     render() {
-        let {classes} = this.props.store;
+        let { classes } = this.props.store;
         const posts = this.props.posts.filter(post => post.kind === 't3');
         console.log(posts)
         return (
             <div>
-                  <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>
-                    <SelectedLink {...this.props} />
+                <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>
+                    <SelectedLink postData={this.state.current} {...this.props} />
                 </Dialog>
                 {posts.map(post => {
-                    return <div key={post.data.id} onClick={()=> this.handleOpen({}, '', '')}>
+                    return <div key={post.data.id} onClick={() => this.handleOpen(post)}>
                         {Reddit.sortPosts(post, this.props)}
                     </div>
                 })}

@@ -33,7 +33,7 @@ export default class CommentPosts extends Component {
         return (
             <div>
                 <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>
-                    <SelectedComment comment={this.state.current} {...this.props} />
+                    <SelectedComment toggleModal={this.toggleModal} comment={this.state.current} {...this.props} />
                 </Dialog>
                 {posts.map(post => {
                     return (
