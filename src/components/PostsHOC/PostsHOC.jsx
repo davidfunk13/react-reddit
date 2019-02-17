@@ -29,7 +29,7 @@ export default class PostsHOC extends Component {
                     <Grid item>
                         {value === 0 && <AllPosts {...this.props} />}
                         {value === 1 && <CommentPosts {...this.props} />}
-                        {value === 2 && <LinkPosts {...this.props} />}
+                        {/* {value === 2 && <LinkPosts {...this.props} />} */}
                         {value === 3 && <ImagePosts  {...this.props} />}
                     </Grid>
                 </Grid>

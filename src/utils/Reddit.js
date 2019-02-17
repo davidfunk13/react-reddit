@@ -17,8 +17,7 @@ export const Reddit = {
                 return err.response
             });
     },
-    sortPosts: (post, props, isModal) => {
-        console.log(isModal)
+    sortPosts: (post, props, needsConversion) => {
         let extensions = ['gifv', 'gif', 'jpg', 'jpeg', 'png'];
         let fileExtension;
         let post1 = {
@@ -28,18 +27,25 @@ export const Reddit = {
             body: post.data.body
         };
         if (post1.body) {
-            return <Comment key={post.data.id} type={'comment'} post={post} {...props} />
+            return (
+                needsConversion ? { type: 'comment', id: post.data.id, url: post.data.url, body: post.data.body } : <Comment key={post.data.id} type={'comment'} post={post} {...props} />
+            )
         }
         if (post1.domain.includes('gfycat')) {
-            return <Video type={'video'} key={post.data.id} post={post} {...props} />;
+            return (
+                needsConversion ? { type: 'gfycat', id: post.data.id, url: post.data.url } : <Video type={'video'} key={post.data.id} post={post} {...props} />
+            )
         }
         if (post1.domain.includes('imgur')) {
             if (post1.url.includes('gifv')) {
                 return (
-                <Video key={post.data.id} type={'video'} post={post} {...props} />
+                    needsConversion ? { type: 'gifv', id: post.data.id, url: post.data.url } : <Video key={post.data.id} type={'video'} post={post} {...props} />
                 );
             } else {
-                return <Image key={post.data.id} type={'image'} post={post} {...props} />
+                return (
+                    needsConversion ? { type: 'gfycat', id: post.data.id, url: post.data.url } : <Image key={post.data.id} type={'image'} post={post} {...props} />
+                )
+
             }
         }
         if (("url" in post.data)) {
@@ -54,12 +60,16 @@ export const Reddit = {
                 }
             })
             if (isImage === true) {
-                return <Image key={post.data.id} type={'image'} post={post} {...props} />
+
+                return (
+                    needsConversion ? { type: 'image', id: post.data.id, url: post.data.url } : <Image key={post.data.id} type={'image'} post={post} {...props} />
+                )
             } else {
-                return <Link key={post.data.id} type={'image'} post={post} {...props} />
+                return (
+                    needsConversion ? { type: 'image', id: post.data.id, url: post.data.url } : <Link key={post.data.id} type={'image'} post={post} {...props} />
+                )
             }
         }
-        console.log(post);
     },
     gridSort: (posts) => {
         let images = [];
@@ -76,17 +86,17 @@ export const Reddit = {
             if (post.data.domain === 'gfycat.com') {
                 caught = !caught
                 return (
-                    allPosts = [...allPosts, {...post, type: 'gfycat'}],
-                    gfycat = [...gfycat, {...post, type: 'gfycat'}]
+                    allPosts = [...allPosts, { ...post, type: 'gfycat' }],
+                    gfycat = [...gfycat, { ...post, type: 'gfycat' }]
                 )
             }
             if (post.data.domain.includes('imgur')) {
                 if (post.data.url.includes('gifv')) {
                     caught = !caught;
-                    return (allPosts = [...allPosts, {...post, type: 'gifv'}], gifv = [...gifv, {...post, type: 'gifv'}]);
+                    return (allPosts = [...allPosts, { ...post, type: 'gifv' }], gifv = [...gifv, { ...post, type: 'gifv' }]);
                 } else {
                     caught = !caught;
-                    return (allPosts = [...allPosts, {...post, type: 'image'}], images = [...images, {...post, type: 'image'}]);
+                    return (allPosts = [...allPosts, { ...post, type: 'image' }], images = [...images, { ...post, type: 'image' }]);
                 }
             };
             let isImage = false;
@@ -102,26 +112,26 @@ export const Reddit = {
 
             if (isImage === true) {
                 caught = !caught;
-                return (allPosts = [...allPosts, {...post, type: 'image'}], images = [...images, {...post, type:'image'}]);
+                return (allPosts = [...allPosts, { ...post, type: 'image' }], images = [...images, { ...post, type: 'image' }]);
             }
             if (post.data.post_hint && post.data.post_hint === 'rich:video') {
                 if (post.data.domain === 'youtube.com' || post.data.domain === 'youtu.be') {
                     caught = !caught;
-                    return (allPosts = [...allPosts, {...post, type: 'youtube'}], youtube = [...youtube, {...post, type: 'youtube'}]);
+                    return (allPosts = [...allPosts, { ...post, type: 'youtube' }], youtube = [...youtube, { ...post, type: 'youtube' }]);
                 }
             }
 
             if (post.data.post_hint && post.data.post_hint === 'hosted:video') {
                 caught = !caught
-                return (allPosts = [...allPosts, {...post, type: 'redditVideo'}], redditVideo = [...redditVideo, {...post, type: 'redditVideo'}]);
+                return (allPosts = [...allPosts, { ...post, type: 'redditVideo' }], redditVideo = [...redditVideo, { ...post, type: 'redditVideo' }]);
             } else if (post.data.domain === 'v.redd.it') {
                 caught = !caught;
-                return (allPosts = [...allPosts, {...post, type: 'redditVideo'}], redditVideo = [...redditVideo, {...post, type: 'redditVideo'}]);
+                return (allPosts = [...allPosts, { ...post, type: 'redditVideo' }], redditVideo = [...redditVideo, { ...post, type: 'redditVideo' }]);
             };
 
             if (caught === false) {
                 caught = !caught;
-               return uncaught = [...uncaught, {...post, type: 'uncaught'}];
+                return uncaught = [...uncaught, { ...post, type: 'uncaught' }];
             }
             return 'löööööööööööps brotha'
         })
@@ -135,7 +145,7 @@ export const Reddit = {
         }
         return media;
     },
-    modalConverter: () =>{
-
+    postModalConversion: (post) => {
+        console.log(post)
     }
 }

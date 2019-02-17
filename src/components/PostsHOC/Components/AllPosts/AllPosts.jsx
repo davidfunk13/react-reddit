@@ -8,13 +8,11 @@ export default class AllPosts extends Component {
     state = {
         isOpen: false,
     }
-    handleOpen = (post, title, type) => {
+    handleOpen = (post, props) => {
         this.setState({
             isOpen: true,
             current: {
-                type: type,
-                post: post,
-                title: title,
+                post: Reddit.sortPosts(post, props, true),
                 thumb: thumb,
             }
         });
@@ -48,9 +46,11 @@ export default class AllPosts extends Component {
                     <SelectedPost postData={this.state.current} {...this.props} />
                 </Dialog>
                 {posts.map((post, index) => {
-                   return <div key={post.data.id} onClick={() => this.handleOpen(post, post.data.title, post.data.type)}>
-                        {Reddit.sortPosts(post, this.props, true)}
-                    </div>
+                    return (
+                        <div key={post.data.id} onClick={() => this.handleOpen(post, post.data.title, post.data.type, this.props)}>
+                            {Reddit.sortPosts(post, this.props)}
+                        </div>
+                    )
                 })}
             </div>
         )
