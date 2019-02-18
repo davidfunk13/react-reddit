@@ -45,8 +45,12 @@ export const Reddit = {
                 return (
                     needsConversion ? { type: 'gfycat', id: post.data.id, url: post.data.url } : <Image key={post.data.id} type={'image'} post={post} {...props} />
                 )
-
             }
+        }
+        if (post1.domain.includes('v.redd.it')){
+            return (
+                needsConversion ? {type: 'redditVideo', id: post.data.id, url: post.data.url } : <Link key={post.data.id} type={'redditVideo'} post={post} {...props} />
+            )
         }
         if (("url" in post.data)) {
             let isImage = false;
@@ -66,7 +70,7 @@ export const Reddit = {
                 )
             } else {
                 return (
-                    needsConversion ? { type: 'image', id: post.data.id, url: post.data.url } : <Link key={post.data.id} type={'image'} post={post} {...props} />
+                    needsConversion ? { type: 'link', id: post.data.id, url: post.data.url } : <Link key={post.data.id} type={'image'} post={post} {...props} />
                 )
             }
         }

@@ -4,7 +4,8 @@ import { Reddit } from '../../../../../../utils/Reddit';
 
 export default class SelectedPost extends Component {
   componentDidMount(){
-      console.log(this.props)
+      console.log(this.props.postData.post.type)
+      console.log(this.props.postData.post.url)
   }
     render() {
         const { classes } = this.props.store;
