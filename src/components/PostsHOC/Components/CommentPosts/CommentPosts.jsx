@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Comment } from '../AllPosts/Components/Posts/index';
+import { Comment as CommentCard } from '../AllPosts/Components/Posts/index';
 import SelectedComment from './Components/SelectedComment/SelectedComment';
 import thumb from '../../assets/img/thumb.png'
 import { Dialog } from '@material-ui/core';
@@ -38,7 +38,7 @@ export default class CommentPosts extends Component {
                 {posts.map(post => {
                     return (
                         <div key={post.data.id} onClick={()=> this.handleOpen(post)}>
-                            <Comment key={post.data.id} post={post} {...this.props} />
+                            <CommentCard key={post.data.id} post={post} {...this.props} />
                         </div>
                     )
                 })}

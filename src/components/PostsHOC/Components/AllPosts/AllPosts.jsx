@@ -8,11 +8,11 @@ export default class AllPosts extends Component {
     state = {
         isOpen: false,
     }
-    handleOpen = (post, props) => {
+    handleOpen = (post) => {
         this.setState({
             isOpen: true,
             current: {
-                post: Reddit.sortPosts(post, props, true),
+                post: post,
                 thumb: thumb,
             }
         });
@@ -43,11 +43,11 @@ export default class AllPosts extends Component {
         return (
             <div>
                 <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>
-                    <SelectedPost postData={this.state.current} {...this.props} />
+                    <SelectedPost toggleModal={()=> this.toggleModal()} postData={this.state.current} {...this.props} />
                 </Dialog>
                 {posts.map((post, index) => {
                     return (
-                        <div key={post.data.id} onClick={() => this.handleOpen(post, post.data.title, post.data.type, this.props)}>
+                        <div key={post.data.id} onClick={() => this.handleOpen(post)}>
                             {Reddit.sortPosts(post, this.props)}
                         </div>
                     )
