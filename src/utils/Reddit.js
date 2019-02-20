@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { Comment as CommentCard, Link as LinkCard, Image as ImageCard, Video } from '../components/PostsHOC/Components/AllPosts/Components/Posts/index';
-import { Comment, Gfycat, Link, GifVideo, Image, RedditVideo } from '../components/PostsHOC/Components/ContentTypes/index';
+import { Comment, Gfycat, Link, GifVideo, Image, RedditVideo, Youtube } from '../components/PostsHOC/Components/ContentTypes/index';
 import thumb from '../components/PostsHOC/assets/img/thumb.png'
 
 
@@ -64,6 +64,12 @@ export const Reddit = {
         if (post1.domain.includes('v.redd.it')) {
             return (
                 needsConversion ? <RedditVideo url={post.data.secure_media.reddit_video.fallback_url} {...props}/> : <LinkCard key={post.data.id} type={'redditVideo'} post={post} {...props} />
+            )
+        }
+        if (post1.domain.includes('youtube') ||post1.domain.includes('youtu.be')) {
+            console.log(post.data.media.oembed.html)
+            return (
+                needsConversion ? <Youtube url={post.data.media.oembed.html} title={post.data.title} {...props}/> : <LinkCard key={post.data.id} type={'redditVideo'} post={post} {...props} />
             )
         }
         if (("url" in post.data)) {

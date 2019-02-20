@@ -32,7 +32,7 @@ export default class LinkPost extends Component {
         return (
             <div>
                 <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>
-                    <SelectedLink postData={this.state.current} {...this.props} />
+                    <SelectedLink toggleModal={this.toggleModal} postData={this.state.current} {...this.props} />
                 </Dialog>
                 {posts.map(post => {
                     return <div key={post.data.id} onClick={() => this.handleOpen(post)}>
