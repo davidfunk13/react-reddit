@@ -17,7 +17,7 @@ export default class Gfycat extends Component {
                         </div>
                     <Grid item>
                         <Typography gutterBottom alt={this.props.title} align={"center"} >
-                            Title
+                            {this.props.title}
                         </Typography>
                     </Grid>
                     <Grid item>

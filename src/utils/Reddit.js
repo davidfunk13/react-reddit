@@ -4,7 +4,6 @@ import { Comment as CommentCard, Link as LinkCard, Image as ImageCard, Video } f
 import { Comment, Gfycat, Link, GifVideo, Image, RedditVideo, Youtube } from '../components/PostsHOC/Components/ContentTypes/index';
 import thumb from '../components/PostsHOC/assets/img/thumb.png'
 
-
 export const Reddit = {
     masterUser: (token) => {
         return axios.get('https://oauth.reddit.com/api/v1/me', { headers: { Authorization: 'Bearer ' + token } })

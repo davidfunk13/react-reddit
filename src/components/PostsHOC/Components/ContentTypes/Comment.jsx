@@ -3,9 +3,6 @@ import { Typography, Grid, Button } from '@material-ui/core';
 
 
 export default class Comment extends Component {
-    componentDidMount(){
-        console.log(this.props)
-    }
     render() {
         return (
             <div>

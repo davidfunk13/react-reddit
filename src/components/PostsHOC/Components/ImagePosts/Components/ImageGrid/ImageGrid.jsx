@@ -50,10 +50,10 @@ export default class ImageGrid extends Component {
         <Paper elevation={4}>
           <GridList className={classes.gridList} cols={3}>
             {all.map(post => {
-              console.log(post)
-              return (<GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(post)} key={post.data.id} type={post.type} cols={post.cols}>
-                <img src={post.thumb} alt={post.data.title} />
-              </GridListTile>
+              return (
+                <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(post)} key={post.data.id} type={post.type} cols={post.cols}>
+                  <img src={post.thumb} alt={post.data.title} />
+                </GridListTile>
               )
             })}
           </GridList>

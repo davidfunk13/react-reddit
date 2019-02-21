@@ -78,8 +78,8 @@ const styles = (theme) => ({
         height: '90vh',
     },
     dialog: {
-        width: '85vw',
-        padding: '0',
+        width: '90vw',
+        padding: '1rem',
         margin:'0'
     },
 });
