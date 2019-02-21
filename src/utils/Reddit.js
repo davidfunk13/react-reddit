@@ -29,48 +29,24 @@ export const Reddit = {
             body: post.data.body
         };
         if (post1.body) {
-            return (
-                needsConversion ?
-                    <Comment key={post.data.id} comment={post.data.body} author={post.data.author} {...props} />
-                    :
-                    <CommentCard key={post.data.id} type={'comment'} post={post} {...props} />
-            )
+            return needsConversion ? <Comment key={post.data.id} comment={post.data.body} author={post.data.author} {...props} /> : <CommentCard key={post.data.id} type={'comment'} post={post} {...props} />
         }
         if (post1.domain.includes('gfycat')) {
-            return (
-                needsConversion ?
-                    <Gfycat key={post.data.id} title={post.data.title} embed={post.data.media} {...props} />
-                    :
-                    <Video type={'video'} key={post.data.id} post={post} {...props} />
-            )
+            return needsConversion ? <Gfycat key={post.data.id} title={post.data.title} embed={post.data.media} {...props} /> : <Video type={'video'} key={post.data.id} post={post} {...props} />
         }
         if (post1.domain.includes('imgur')) {
             if (post1.url.includes('gifv')) {
-                return (
-                    needsConversion ?
-                        <GifVideo key={post.data.id} post={post} url={post.data.url.replace('gifv', 'mp4')} thumb={thumb} {...props} />
-                        :
-                        <Video key={post.data.id} type={'video'} post={post} {...props} />
-                );
+                return needsConversion ? <GifVideo key={post.data.id} post={post} url={post.data.url.replace('gifv', 'mp4')} thumb={thumb} {...props} /> : <Video key={post.data.id} type={'video'} post={post} {...props} />
             } else {
-                return (
-                    needsConversion ?
-                        <Image key={post.data.id} url={post.data.url} title={post.data.title} {...props} />
-                        :
-                        <ImageCard key={post.data.id} type={'image'} post={post} {...props} />
-                )
+                return needsConversion ? <Image key={post.data.id} url={post.data.url} title={post.data.title} {...props} /> : <ImageCard key={post.data.id} type={'image'} post={post} {...props} />
             }
         }
         if (post1.domain.includes('v.redd.it')) {
-            return (
-                needsConversion ? <RedditVideo url={post.data.secure_media.reddit_video.fallback_url} {...props} /> : <LinkCard key={post.data.id} type={'redditVideo'} post={post} {...props} />
-            )
+            return needsConversion ? <RedditVideo url={post.data.secure_media.reddit_video.fallback_url} {...props} /> : <LinkCard key={post.data.id} type={'redditVideo'} post={post} {...props} />
+            
         }
         if (post1.domain.includes('youtube') || post1.domain.includes('youtu.be')) {
-            console.log(post.data.media.oembed.html)
-            return (
-                needsConversion ? <Youtube thumbnail={post} url={post.data.media.oembed.html} title={post.data.title} {...props} /> : <LinkCard key={post.data.id} type={'youtube'} post={post} {...props} />
-            )
+            return needsConversion ? <Youtube thumbnail={post} url={post.data.media.oembed.html} title={post.data.title} {...props} /> : <LinkCard key={post.data.id} type={'youtube'} post={post} {...props} />
         }
         if (("url" in post.data)) {
             let isImage = false;
@@ -84,17 +60,9 @@ export const Reddit = {
                 }
             })
             if (isImage === true) {
-
-                return (
-                    needsConversion ?
-                        <Image key={post.data.id} url={post.data.url} title={post.data.title} {...props} />
-                        :
-                        <ImageCard key={post.data.id} type={'image'} post={post} {...props} />
-                )
+                return needsConversion ? <Image key={post.data.id} url={post.data.url} title={post.data.title} {...props} /> : <ImageCard key={post.data.id} type={'image'} post={post} {...props} />
             } else {
-                return (
-                    needsConversion ? <Link key={post.data.id} title={post.data.title} url={post.data.url} {...props} /> : <LinkCard key={post.data.id} type={'image'} post={post} {...props} />
-                )
+                return needsConversion ? <Link key={post.data.id} title={post.data.title} url={post.data.url} {...props} /> : <LinkCard key={post.data.id} type={'image'} post={post} {...props} />
             }
         }
     },

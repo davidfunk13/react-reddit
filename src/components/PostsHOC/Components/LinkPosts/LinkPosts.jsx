@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from '../AllPosts/Components/Posts/index';
 import SelectedLink from './Components/SelectedLink/SelectedLink';
 import { Reddit } from '../../../../utils/Reddit';
 import { Dialog } from '@material-ui/core';
@@ -8,7 +7,8 @@ export default class LinkPost extends Component {
     state = {
         isOpen: false,
     }
-    handleOpen = (post, title, type) => {
+    
+    handleOpen = (post) => {
         this.setState({
             isOpen: true,
             current: {
@@ -28,7 +28,6 @@ export default class LinkPost extends Component {
     render() {
         let { classes } = this.props.store;
         const posts = this.props.posts.filter(post => post.kind === 't3');
-        console.log(posts)
         return (
             <div>
                 <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>

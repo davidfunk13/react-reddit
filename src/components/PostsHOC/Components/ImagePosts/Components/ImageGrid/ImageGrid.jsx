@@ -1,6 +1,5 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import { GridList, GridListTile, Dialog, Paper } from '@material-ui/core';
-import thumb from '../../../../assets/img/thumb.png'
 import SelectedImage from '../SelectedImage/SelectedImage';
 
 
@@ -16,9 +15,7 @@ export default class ImageGrid extends Component {
       gifv: this.props.gifv
     },
     current: {
-      type: '',
-      img: '',
-      title: ''
+      post: ''
     }
   }
   handleOpen = (post) => {
@@ -38,7 +35,7 @@ export default class ImageGrid extends Component {
     image.src = "../AllPosts/thumb.png";
     return true;
   }
-  componentDidMount(){
+  componentDidMount() {
     console.log(this.props)
   }
 
@@ -54,56 +51,11 @@ export default class ImageGrid extends Component {
           <GridList className={classes.gridList} cols={3}>
             {all.map(post => {
               console.log(post)
-                   return (
-                          <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(post)} key={post.data.id} type={post.type} cols={post.cols}>
-                            <img src={post.thumb} alt={post.data.title} />
-                          </GridListTile>
-                        );
-            //   if (post.type === 'gfycat') {
-            //     let { oembed } = post.data.media;
-            //     let srcWithQuotes = oembed.html.match(/src\=([^\s]*)\s/)[1];
-            //     let thumb = post.data.preview.images[0].resolutions[1].url;
-            //     let src = srcWithQuotes.substring(1, srcWithQuotes.length - 1);
-            //     return (
-            //       <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(post)} key={post.data.id} type={post.type} cols={post.cols}>
-            //         <img src={thumb} alt={post.data.title} />
-            //       </GridListTile>
-            //     );
-            //   } else if (post.type === 'youtube') {
-            //     let { oembed } = post.data.media;
-            //     let thumb = oembed.thumbnail_url;
-            //     return (
-            //       <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(post)} key={post.data.id} type={post.type} cols={post.cols}>
-            //         <img src={thumb} alt={post.data.title} />
-            //       </GridListTile>
-            //     )
-            //   } else if (post.type === 'redditVideo') {
-
-            //     let { reddit_video } = post.data.secure_media;
-            //     let thumb = post.data.preview.images[0].resolutions[1].url;
-            //     return (
-            //       <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(post)} key={post.data.id} type={post.type} cols={post.cols}>
-            //         <img src={thumb} alt={post.data.title} />
-            //       </GridListTile>
-            //     )
-            //   } else if (post.type === 'image') {
-            //     return (
-            //       <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(post)} key={post.data.id} type={post.type} cols={post.cols}>
-            //         <img src={post.data.url} alt={post.data.title} />
-            //       </GridListTile>
-            //     )
-            //   } else if (post.type === 'gifv') {
-            //     let url = post.data.url.replace('gifv', 'mp4');
-            //     let thumb = post.data.preview.images[0].resolutions[1].url;
-            //     return (
-            //       <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(url, post.data.title, post.type)} key={post.data.id} type={post.type} cols={post.cols}>
-            //         <img onError={(e) => { e.target.onerror = null; e.target.src = thumb }} src={thumb} alt={post.data.title} />
-            //       </GridListTile>
-            //     )
-            //   }
-            }
-            
-            )}
+              return (<GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(post)} key={post.data.id} type={post.type} cols={post.cols}>
+                <img src={post.thumb} alt={post.data.title} />
+              </GridListTile>
+              )
+            })}
           </GridList>
         </Paper>
       </div>

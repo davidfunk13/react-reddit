@@ -9,12 +9,11 @@ export default class Youtube extends Component {
         return src;
     }
     render() {
-        const { classes } = this.props.store;
         return (
             <div>
                 <Grid container direction="column" alignItems={"center"} >
                     <Grid item>
-                        <iframe style={{ height: '60vh', width: '90vw', paddingBottom: '.5rem' }}
+                        <iframe title='youtube-link' style={{ height: '60vh', width: '90vw', paddingBottom: '.5rem' }}
                             src={this.getYoutubeSrc(this.props.url)}
                             frameBorder="0"
                             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

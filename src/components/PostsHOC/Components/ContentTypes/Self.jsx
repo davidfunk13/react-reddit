@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { Typography, Grid, Button } from '@material-ui/core';
 
 
-export default class Self extends Component {
-    
+export default class Self extends Component {    
     render() {
-        const { classes } = this.props.store;
         return (
             <div>
                 <Grid container direction="column" alignItems={"center"} >
