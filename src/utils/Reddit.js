@@ -63,13 +63,13 @@ export const Reddit = {
         }
         if (post1.domain.includes('v.redd.it')) {
             return (
-                needsConversion ? <RedditVideo url={post.data.secure_media.reddit_video.fallback_url} {...props}/> : <LinkCard key={post.data.id} type={'redditVideo'} post={post} {...props} />
+                needsConversion ? <RedditVideo url={post.data.secure_media.reddit_video.fallback_url} {...props} /> : <LinkCard key={post.data.id} type={'redditVideo'} post={post} {...props} />
             )
         }
-        if (post1.domain.includes('youtube') ||post1.domain.includes('youtu.be')) {
+        if (post1.domain.includes('youtube') || post1.domain.includes('youtu.be')) {
             console.log(post.data.media.oembed.html)
             return (
-                needsConversion ? <Youtube url={post.data.media.oembed.html} title={post.data.title} {...props}/> : <LinkCard key={post.data.id} type={'redditVideo'} post={post} {...props} />
+                needsConversion ? <Youtube thumbnail={post} url={post.data.media.oembed.html} title={post.data.title} {...props} /> : <LinkCard key={post.data.id} type={'youtube'} post={post} {...props} />
             )
         }
         if (("url" in post.data)) {
@@ -111,19 +111,22 @@ export const Reddit = {
         posts.map(post => {
             let caught = false;
             if (post.data.domain === 'gfycat.com') {
+                let thumb = post.data.preview.images[0].resolutions[1].url;
                 caught = !caught
                 return (
-                    allPosts = [...allPosts, { ...post, type: 'gfycat' }],
-                    gfycat = [...gfycat, { ...post, type: 'gfycat' }]
+                    allPosts = [...allPosts, { ...post, type: 'gfycat', thumb: thumb }],
+                    gfycat = [...gfycat, { ...post, type: 'gfycat', thumb: thumb }]
                 )
             }
             if (post.data.domain.includes('imgur')) {
                 if (post.data.url.includes('gifv')) {
+                    let thumb = post.data.preview.images[0].resolutions[1].url;
                     caught = !caught;
-                    return (allPosts = [...allPosts, { ...post, type: 'gifv' }], gifv = [...gifv, { ...post, type: 'gifv' }]);
+                    return (allPosts = [...allPosts, { ...post, type: 'gifv', thumb: thumb }], gifv = [...gifv, { ...post, type: 'gifv', thumb: thumb }]);
                 } else {
+                    let thumb = post.data.url;
                     caught = !caught;
-                    return (allPosts = [...allPosts, { ...post, type: 'image' }], images = [...images, { ...post, type: 'image' }]);
+                    return (allPosts = [...allPosts, { ...post, type: 'image', thumb: thumb }], images = [...images, { ...post, type: 'image', thumb: thumb }]);
                 }
             };
             let isImage = false;
@@ -138,22 +141,26 @@ export const Reddit = {
             })
 
             if (isImage === true) {
+                let thumb = post.data.url;
                 caught = !caught;
-                return (allPosts = [...allPosts, { ...post, type: 'image' }], images = [...images, { ...post, type: 'image' }]);
+                return (allPosts = [...allPosts, { ...post, type: 'image', thumb: thumb }], images = [...images, { ...post, type: 'image', thumb: thumb }]);
             }
             if (post.data.post_hint && post.data.post_hint === 'rich:video') {
                 if (post.data.domain === 'youtube.com' || post.data.domain === 'youtu.be') {
+                    let { oembed } = post.data.media;
+                    let thumb = oembed.thumbnail_url;
                     caught = !caught;
-                    return (allPosts = [...allPosts, { ...post, type: 'youtube' }], youtube = [...youtube, { ...post, type: 'youtube' }]);
+                    return (allPosts = [...allPosts, { ...post, type: 'youtube', thumb: thumb }], youtube = [...youtube, { ...post, type: 'youtube', thumb: thumb }]);
                 }
             }
 
             if (post.data.post_hint && post.data.post_hint === 'hosted:video') {
+                let thumb = post.data.preview.images[0].resolutions[1].url;
                 caught = !caught
-                return (allPosts = [...allPosts, { ...post, type: 'redditVideo' }], redditVideo = [...redditVideo, { ...post, type: 'redditVideo' }]);
+                return (allPosts = [...allPosts, { ...post, type: 'redditVideo', thumb: thumb }], redditVideo = [...redditVideo, { ...post, type: 'redditVideo', thumb: thumb }]);
             } else if (post.data.domain === 'v.redd.it') {
                 caught = !caught;
-                return (allPosts = [...allPosts, { ...post, type: 'redditVideo' }], redditVideo = [...redditVideo, { ...post, type: 'redditVideo' }]);
+                return (allPosts = [...allPosts, { ...post, type: 'redditVideo', thumb: thumb }], redditVideo = [...redditVideo, { ...post, type: 'redditVideo', thumb: thumb }]);
             };
 
             if (caught === false) {
