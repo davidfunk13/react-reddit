@@ -55,7 +55,6 @@ export default class Saved extends Component {
                         <PostsHOC requestInfo={this.state.requestInfo} posts={this.state.saved} {...this.props} />
                     }
                 </main>
-                <Link to="/">Back</Link>
             </Grid>
         )
     }

@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
-import { Typography, Grid, Button } from '@material-ui/core';
+import { Typography, Grid, Paper } from '@material-ui/core';
 import { Reddit } from '../../utils/Reddit';
 import thumb from '../PostsHOC/assets/img/thumb.png';
 
@@ -36,17 +36,18 @@ export default class Profile extends Component {
                         </Grid>
                     </main>
                     :
-                    <main style={{ height: '75vh' }} className={classNames(classes.content, { [classes.contentShift]: open })} >
-                        <Grid container direction={'column'} alignItems={'center'}>
+                    <main className={classNames(classes.content, { [classes.contentShift]: open })} >
+                        <Grid container spacing={8} direction={'column'} alignItems={'center'}>
                             <Grid item xs={12}>
-                                <img onError={(e) => { e.target.onerror = null; e.target.src = thumb }} src={data.data.icon_img} alt="" />
+                            <Paper elevation={4} style={{padding:'1rem'}}>
+                                <img  onError={(e) => { e.target.onerror = null; e.target.src = thumb }} src={data.data.icon_img} alt="" />
+                            </Paper>
                             </Grid>
                             <Grid item xs={12}>
-                                <Typography>
+                                <Typography variant={'h5'}>
                                     {data.data.name}
                                 </Typography>
                             </Grid>
-                        <Link to='/'><Button variant={'contained'} color={'secondary'}>Back</Button></Link>
                         </Grid>
                     </main>
                 }
