@@ -70,7 +70,7 @@ export default class Profile extends Component {
                                 </Paper>
                             </Grid>
                             <Grid item xs={12}>
-                                <Typography align={'center'} variant={'h5'}>
+                                <Typography align={'center'} variant={'h6'}>
                                     User:
                                 </Typography>
                                 <Typography align={'center'}>

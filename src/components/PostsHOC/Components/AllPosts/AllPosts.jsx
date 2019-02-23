@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Reddit } from '../../../../utils/Reddit.js';
-import { Dialog } from '@material-ui/core';
+import { Dialog, Grid } from '@material-ui/core';
 import SelectedPost from './Components/SelectedPost/SelectedPost';
 import thumb from '../../assets/img/thumb.png'
 
@@ -45,6 +45,8 @@ export default class AllPosts extends Component {
                 <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>
                     <SelectedPost toggleModal={()=> this.toggleModal()} postData={this.state.current} {...this.props} />
                 </Dialog>
+                <Grid container direction={'column'} alignContent={'center'} alignItems={'center'}>
+                <Grid item xs={12}>
                 {posts.map((post, index) => {
                     return (
                         <div key={post.data.id} onClick={() => this.handleOpen(post)}>
@@ -52,6 +54,8 @@ export default class AllPosts extends Component {
                         </div>
                     )
                 })}
+                </Grid>
+                </Grid>
             </div>
         )
     }

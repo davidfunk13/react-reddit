@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GridList, GridListTile, Dialog, Paper } from '@material-ui/core';
+import { Grid, GridList, GridListTile, Dialog, Paper } from '@material-ui/core';
 import SelectedImage from '../SelectedImage/SelectedImage';
 
 
@@ -43,22 +43,24 @@ export default class ImageGrid extends Component {
     const { classes } = this.props.store;
     const { all } = this.state.posts;
     return (
-      <div>
+      <Grid container direction={'column'} alignContent={"center"} alignItems={'center'}>
         <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>
           <SelectedImage post={this.state.post} toggleModal={this.toggleModal} {...this.props} />
         </Dialog>
-        <Paper elevation={4}>
-          <GridList className={classes.gridList} cols={3}>
-            {all.map(post => {
-              return (
-                <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(post)} key={post.data.id} type={post.type} cols={post.cols}>
-                  <img src={post.thumb} alt={post.data.title} />
-                </GridListTile>
-              )
-            })}
-          </GridList>
-        </Paper>
-      </div>
+        <Grid item xs={12}>
+          <Paper style={{ padding: '1rem' }} elevation={4}>
+            <GridList cols={3}>
+              {all.map(post => {
+                return (
+                  <GridListTile style={{ padding: '.5rem' }} onClick={() => this.handleOpen(post)} key={post.data.id} type={post.type} cols={post.cols}>
+                    <img src={post.thumb} alt={post.data.title} />
+                  </GridListTile>
+                )
+              })}
+            </GridList>
+          </Paper>
+        </Grid>
+      </Grid>
     );
   }
 }
