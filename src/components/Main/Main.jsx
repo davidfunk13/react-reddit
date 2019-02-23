@@ -12,8 +12,11 @@ export default class Main extends Component {
             <div>
                 <main className={classNames(classes.content, {[classes.contentShift]: open})} >
                 <div className={classes.section}>
+                    <Typography variant={'h6'} >
+                        Welcome
+                    </Typography>
                     <Typography className={classes.main}>
-                       Welcome to my React based Reddit Client!
+                       Welcome to my React based saved Reddit post viewer! Use the hamburger nav to browse your saved posts!
                     </Typography>
                 </div>
                 </main>

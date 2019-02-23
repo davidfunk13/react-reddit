@@ -40,6 +40,10 @@ export default class Header extends Component {
                             <SaveIcon />
                             <ListItemText primary={'Home'} />
                         </ListItem>
+                        {/* <ListItem button onClick={() => toggle()} component={Link} to={'/frontpage'} >
+                            <SaveIcon />
+                            <ListItemText primary={'Front Page'} />
+                        </ListItem> */}
                         <ListItem button onClick={() => toggle()} component={Link} to={'/profile'} >
                             <ProfileIcon />
                             <ListItemText primary={'Profile'} />

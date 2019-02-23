@@ -5,6 +5,7 @@ import Profile from './Profile/Profile';
 import {Auth} from './Auth/Auth';
 import Callback from './Auth/Callback/Callback';
 import Saved from './Saved/Saved';
+import Frontpage from './Frontpage/Frontpage';
 
 export {
     Auth,
@@ -13,5 +14,6 @@ export {
     Header,
     Unauthorized,
     Profile,
-    Saved
+    Saved,
+    Frontpage
 };

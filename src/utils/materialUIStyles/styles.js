@@ -38,7 +38,7 @@ const styles = (theme) => ({
         justifyContent: "flex-end"
     },
     content: {
-        width: '80vw',
+        width: '85vw',
         flexGrow: 1,
         padding: theme.spacing.unit * 3,
         transition: theme.transitions.create("margin", {

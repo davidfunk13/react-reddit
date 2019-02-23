@@ -11,14 +11,14 @@ export default class Unauthorized extends Component {
         return (
                 <main className={classNames(classes.content, { [classes.contentShift]: open })} >
                     <Grid container direction={'column'} alignContent={'center'}>
-                        <Typography component={'h1'} variant="h5" gutterBottom>
+                        <Typography component={'h1'} variant="h6" gutterBottom>
                             Welcome
                         </Typography>
                         <Typography component={'p'} gutterBottom>
                             I am a junior javascript developer, and this is my React based Reddit client!
                         </Typography>
-                        <Divider />
-                        <Typography component={'h1'} variant="h5" gutterBottom>
+                        <Divider style={{margin: '1rem 0 1rem 0'}} />
+                        <Typography component={'h1'} variant="h6" gutterBottom>
                             About this App
                         </Typography>
                         <Typography component={'p'} gutterBottom>

@@ -41,7 +41,7 @@ export const Reddit = {
             }
         }
         if (post1.domain.includes('v.redd.it')) {
-            return needsConversion ? <RedditVideo url={post.data.secure_media.reddit_video.fallback_url} {...props} /> : <LinkCard key={post.data.id} type={'redditVideo'} post={post} {...props} />
+            return needsConversion ? <RedditVideo title={post.data.title} url={post.data.secure_media.reddit_video.fallback_url} {...props} /> : <LinkCard key={post.data.id} type={'redditVideo'} post={post} {...props} />
             
         }
         if (post1.domain.includes('youtube') || post1.domain.includes('youtu.be')) {
