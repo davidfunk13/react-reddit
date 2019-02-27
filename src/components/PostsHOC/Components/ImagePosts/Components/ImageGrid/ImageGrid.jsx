@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Grid, GridList, GridListTile, Dialog, Paper } from '@material-ui/core';
 import SelectedImage from '../SelectedImage/SelectedImage';
 
-
+import thumb from '../../../../assets/img/thumb.png'
 export default class ImageGrid extends Component {
   state = {
     isOpen: false,
@@ -49,7 +49,7 @@ export default class ImageGrid extends Component {
             {all.map(post => {
               return (
                 <GridListTile style={{ padding: '.5rem' }} onClick={() => this.handleOpen(post)} key={post.data.id} type={post.type} cols={post.cols}>
-                  <img src={post.thumb} alt={post.data.title} />
+                  <img onError={(e) => { e.target.onerror = null; e.target.src = thumb }} src={post.thumb} alt={post.data.title} />
                 </GridListTile>
               )
             })}

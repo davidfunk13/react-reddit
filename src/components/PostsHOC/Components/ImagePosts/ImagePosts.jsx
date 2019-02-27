@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Grid} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import ImageGrid from './Components/ImageGrid/ImageGrid';
 import { Reddit } from '../../../../utils/Reddit.js'
 
@@ -37,19 +37,19 @@ export default class ImagePosts extends Component {
     const posts = this.props.posts.filter(post => post.kind === 't3');
     let mediaOnly = Reddit.gridSort(posts);
     return (
-      // <Grid container direction={'column'} alignItems={'center'} alignContent={"center"}>
-      // <Grid item xs={12}>
-      <ImageGrid
-        allPosts={this.getPostsWithColumns(mediaOnly.allPosts)}
-        gfycat={this.getPostsWithColumns(mediaOnly.gfycat)}
-        images={this.getPostsWithColumns(mediaOnly.images)}
-        gifv={this.getPostsWithColumns(mediaOnly.gifv)}
-        redditVideo={this.getPostsWithColumns(mediaOnly.redditVideo)}
-        youtube={this.getPostsWithColumns(mediaOnly.youtube)}
-        {...this.props}
-        />
-        // </Grid>
-      // </Grid>
+      <Grid container direction={'column'} alignContent={"center"} alignItems={'center'}>
+        <Grid item>
+          <ImageGrid
+            allPosts={this.getPostsWithColumns(mediaOnly.allPosts)}
+            gfycat={this.getPostsWithColumns(mediaOnly.gfycat)}
+            images={this.getPostsWithColumns(mediaOnly.images)}
+            gifv={this.getPostsWithColumns(mediaOnly.gifv)}
+            redditVideo={this.getPostsWithColumns(mediaOnly.redditVideo)}
+            youtube={this.getPostsWithColumns(mediaOnly.youtube)}
+            {...this.props}
+          />
+        </Grid>
+      </Grid>
     )
   }
 }
