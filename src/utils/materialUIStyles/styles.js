@@ -57,11 +57,12 @@ const styles = (theme) => ({
     },
     paper: {
         height: '10vh',
-        width: '85vw',
+        width: '80vw',
         marginBottom: '2rem',
     },
     posts: {
-        height: '70vh',
+        height: '75vh',
+       width: '100%',
         overflow: 'auto',
     },
     postCard: {

@@ -5,7 +5,6 @@ import { Typography, Grid, Button, Paper } from '@material-ui/core';
 export default class RedditVideo extends Component {
     render() {
         return (
-            <div>
                 <Grid container direction="column" alignContent={'center'} alignItems={"center"} >
                     <Paper style={{ padding: '1rem', marginBottom: '1rem' }} elevation={4}>
                         <video style={{ position: 'relative', maxWidth: '100%', maxHeight: '60vh' }} onError={(e) => { e.target.onerror = null; e.target.src = this.props.thumb }} autoPlay loop>
@@ -21,7 +20,6 @@ export default class RedditVideo extends Component {
                         <Button variant="contained" color={"secondary"} onClick={() => this.props.toggleModal()}>Close</Button>
                     </Grid>
                 </Grid>
-            </div>
         );
     }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GridList, GridListTile, Dialog, Paper } from '@material-ui/core';
+import { Grid, GridList, GridListTile, Dialog, Paper } from '@material-ui/core';
 import SelectedImage from '../SelectedImage/SelectedImage';
 
 
@@ -40,7 +40,7 @@ export default class ImageGrid extends Component {
     const { classes } = this.props.store;
     const { all } = this.state.posts;
     return (
-      <div>
+      <Grid container direction={'column'} alignContent={"center"} alignItems={'center'}>
         <Dialog onClose={() => this.toggleModal()} classes={{ paper: classes.dialog }} open={this.state.isOpen}>
           <SelectedImage post={this.state.post} toggleModal={this.toggleModal} {...this.props} />
         </Dialog>
@@ -55,7 +55,7 @@ export default class ImageGrid extends Component {
             })}
           </GridList>
         </Paper>
-      </div>
+      </Grid>
     );
   }
 }
