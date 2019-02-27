@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './sass/App.scss';
 import history from './components/Auth/history';
 import { Router, Route } from 'react-router-dom';
-import { Header, Auth, Unauthorized, Callback, Main, Saved, Profile, Frontpage } from './components/index';
+import { Header, Auth, Unauthorized, Callback, Main, Saved, Profile } from './components/index';
 import { Reddit } from './utils/Reddit';
 import styles from './utils/materialUIStyles/styles';
 import { withStyles } from "@material-ui/core/styles";

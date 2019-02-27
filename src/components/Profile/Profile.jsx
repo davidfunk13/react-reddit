@@ -1,6 +1,5 @@
 
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
 import { Typography, Grid, Paper, CircularProgress } from '@material-ui/core';
 import { Reddit } from '../../utils/Reddit';
 import thumb from '../PostsHOC/assets/img/thumb.png';
@@ -14,7 +13,6 @@ export default class Profile extends Component {
         if (sessionStorage.getItem('t')) {
             let token = sessionStorage.getItem('t');
             Reddit.masterUser(token).then(User => {
-                console.log(User)
                 this.setState({ isFetching: false, data: User });
             });
         }

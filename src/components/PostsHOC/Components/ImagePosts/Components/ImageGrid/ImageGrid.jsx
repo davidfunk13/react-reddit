@@ -35,9 +35,6 @@ export default class ImageGrid extends Component {
     image.src = "../AllPosts/thumb.png";
     return true;
   }
-  componentDidMount() {
-    console.log(this.props)
-  }
 
   render() {
     const { classes } = this.props.store;
@@ -51,7 +48,7 @@ export default class ImageGrid extends Component {
           <GridList className={classes.gridList} cols={3}>
             {all.map(post => {
               return (
-                <GridListTile style={{ padding: '0' }} onClick={() => this.handleOpen(post)} key={post.data.id} type={post.type} cols={post.cols}>
+                <GridListTile style={{ padding: '.5rem' }} onClick={() => this.handleOpen(post)} key={post.data.id} type={post.type} cols={post.cols}>
                   <img src={post.thumb} alt={post.data.title} />
                 </GridListTile>
               )

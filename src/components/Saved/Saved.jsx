@@ -1,5 +1,4 @@
-import React, { Fragment, Component } from 'react';
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
 import { Reddit } from '../../utils/Reddit';
 import PostsHOC from '../PostsHOC/PostsHOC';
 import { Typography, Grid, CircularProgress } from '@material-ui/core/';

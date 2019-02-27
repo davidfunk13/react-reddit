@@ -8,7 +8,6 @@ export const Auth = {
             let state = url.match(/state=(.*?)&/)[1];
             let bearer = url.match(/token=(.*?)&/)[1]
             if (state === process.env.REACT_APP_RANDOM_STRING && bearer !== undefined) {
-                console.log(state, bearer)
                 sessionStorage.setItem("t", bearer);
                 sessionStorage.setItem("expires_at", expiresAt);
             }
