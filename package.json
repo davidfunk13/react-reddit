@@ -21,7 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "echo Skip build on Heroku"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +36,6 @@
   "devDependencies": {
     "react-app-env": "^1.2.3",
     "redux-logger": "^3.0.6"
-  }
+  },
+  "heroku-run-build-script": true
 }
