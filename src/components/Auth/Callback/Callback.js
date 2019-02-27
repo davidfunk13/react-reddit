@@ -7,11 +7,7 @@ import { Grid, Typography, CircularProgress } from '@material-ui/core/';
 export default class Callback extends Component {
     componentDidMount() {
         Auth.handleAuthentication();
-        //timeout is just so i can SEE the callback component to add a css spinner later. dont forget ;)
-        setTimeout(
-            () => history.replace('/'),
-            3000
-        );
+        history.replace('/');
     }
 
     render() {
